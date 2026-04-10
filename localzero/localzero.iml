@@ -6,4 +6,16 @@
       <sourceFolder url="file://$MODULE_DIR$/backend/src/main/resources" type="java-resource" />
     </content>
   </component>
+  <component name="FacetManager">
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <setting name="provider-name" value="Hibernate" />
+        <datasource-mapping>
+          <factory-entry name="entityManagerFactory" value="a02b75d9-f31f-411b-8d3c-ea7c28a500a4" />
+        </datasource-mapping>
+        <naming-strategy-map />
+      </configuration>
+    </facet>
+  </component>
 </module>
