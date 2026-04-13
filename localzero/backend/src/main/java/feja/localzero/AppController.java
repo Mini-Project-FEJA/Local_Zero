@@ -5,11 +5,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/app")
+@RequestMapping("/")
 public class AppController {
 
-    @GetMapping("/something")
-    public String something() {
-        return "something";
+    @GetMapping("/index")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/frontpage")
+    public String frontpage() {
+        return "frontpage";
     }
 }

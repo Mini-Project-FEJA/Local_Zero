@@ -1,7 +1,4 @@
-fetch('/app/something')
+fetch('/index')
     .then(response => response.text())
-    .then(something => {
-        const container = document.getElementById('something');
-        container.innerHTML = JSON.stringify(something);
-    })
+    .then(data => console.log(data))
     .catch(err => console.error(err))
