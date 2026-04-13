@@ -1,20 +1,28 @@
 package feja.localzero;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/")
+@Controller
+@RequestMapping("/localzero")
 public class AppController {
 
-    @GetMapping("/index")
+    @GetMapping("")
     public String index() {
-        return "index";
+        return "index.html";
     }
 
     @GetMapping("/frontpage")
     public String frontpage() {
-        return "frontpage";
+        System.out.println("test");
+        return "forward:/frontpage.html";
     }
+
+    @GetMapping("/signup")
+    public String signupPage() {
+        return "forward:/signup.html";
+    }
+
 }

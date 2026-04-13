@@ -4,24 +4,46 @@
   <meta charset="UTF-8">
   <title>Local Zero</title>
   <link rel="stylesheet" href="style.css">
-  <script src="app.js"></script>
+
 </head>
 
 <body>
   <h1>Welcome to Local Zero</h1>
-  <div class="login-box">
 
-    <label for="username">Username</label>
-    <input class="input-field" type="text" id="username" name="Username">
+    <div class="register-login-box">
 
-    <label for="password">Password</label>
-    <input class="input-field" type="text" id="password" name="Password">
+      <label class="input-label" for="username">Username</label>
+      <input class="input-field" type="text" id="username" name="Username">
 
-    <a href="frontpage.html">
-      <button id="login-button">Log In</button>
-    </a>
+      <label class="input-label" for="password">Password</label>
+      <input class="input-field" type="text" id="password" name="Password">
 
+      <button class="register-login-button" id="login-button">Log In</button>
+      <button id="sign-up-button">Create account</button>
+    </div>
+
+  <div class="register-login-box">
+
+    <label class="input-label" for="register-username">Username</label>
+    <input class="input-field" type="text" id="register-username" name="Username">
+
+    <label class="input-label" for="register-name">Name</label>
+    <input class="input-field" type="text" id="register-name" name="Name">
+
+    <label class="input-label" for="register-location">Location</label>
+    <input class="input-field" type="text" id="register-location" name="Location">
+
+    <label class="input-label" for="register-password">Password</label>
+    <input class="input-field" type="text" id="register-password" name="Password">
+
+    <label class="input-label" for="register-email">E-mail</label>
+    <input class="input-field" type="text" id="register-email" name="E-mail">
+
+    <button class="register-login-button" id="register-button">Register</button>
+    <button id="sign-in-button">Sign in instead</button>
   </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
 
