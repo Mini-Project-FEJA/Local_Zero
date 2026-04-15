@@ -1,6 +1,6 @@
-package feja.localzero.Repo;
+package feja.localzero.repo;
 
-import feja.localzero.Entity.User;
+import feja.localzero.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

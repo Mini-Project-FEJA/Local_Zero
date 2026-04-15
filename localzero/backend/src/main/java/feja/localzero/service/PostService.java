@@ -1,9 +1,9 @@
-package feja.localzero.Service;
+package feja.localzero.service;
 
-import feja.localzero.Entity.Post;
-import feja.localzero.Entity.User;
-import feja.localzero.Repo.PostRepository;
-import feja.localzero.Repo.UserRepository;
+import feja.localzero.entity.Post;
+import feja.localzero.entity.User;
+import feja.localzero.repo.PostRepository;
+import feja.localzero.repo.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

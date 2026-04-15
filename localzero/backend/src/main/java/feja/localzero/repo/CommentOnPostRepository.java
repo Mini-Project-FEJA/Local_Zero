@@ -1,7 +1,7 @@
-package feja.localzero.Repo;
+package feja.localzero.repo;
 
-import feja.localzero.Entity.CommentOnPost;
-import feja.localzero.Entity.Post;
+import feja.localzero.entity.CommentOnPost;
+import feja.localzero.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

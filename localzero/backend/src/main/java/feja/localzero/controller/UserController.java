@@ -1,7 +1,7 @@
-package feja.localzero.Controller;
+package feja.localzero.controller;
 
-import feja.localzero.Entity.User;
-import feja.localzero.Service.UserService;
+import feja.localzero.entity.User;
+import feja.localzero.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

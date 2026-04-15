@@ -1,9 +1,9 @@
-package feja.localzero.Service;
+package feja.localzero.service;
 
-import feja.localzero.Entity.User;
-import feja.localzero.Entity.UserRole;
-import feja.localzero.Entity.UserRoleAssignment;
-import feja.localzero.Repo.UserRoleAssignmentRepository;
+import feja.localzero.entity.User;
+import feja.localzero.entity.UserRole;
+import feja.localzero.entity.UserRoleAssignment;
+import feja.localzero.repo.UserRoleAssignmentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

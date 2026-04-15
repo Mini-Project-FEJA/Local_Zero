@@ -1,11 +1,11 @@
-package feja.localzero.Service;
+package feja.localzero.service;
 
-import feja.localzero.Entity.InitiativeCategory;
-import feja.localzero.Entity.SustainabilityInitiative;
-import feja.localzero.Entity.User;
-import feja.localzero.Entity.Visibility;
-import feja.localzero.Repo.SustainabilityInitiativeRepository;
-import feja.localzero.Repo.UserRepository;
+import feja.localzero.entity.InitiativeCategory;
+import feja.localzero.entity.SustainabilityInitiative;
+import feja.localzero.entity.User;
+import feja.localzero.entity.Visibility;
+import feja.localzero.repo.SustainabilityInitiativeRepository;
+import feja.localzero.repo.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
