@@ -1,4 +1,4 @@
-package feja.localzero.entity;
+package feja.localzero.Entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
