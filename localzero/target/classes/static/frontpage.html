@@ -3,26 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Local Zero</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
-<div class="main-content">
-    <h1 id="header">For you page</h1>
+
+<div class="layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar left">
+        <h2 class="sidebar-title">Your Community</h2>
+
+        <div class="sidebar-card">
+            <button class="btn-primary" id="visit-resident-profile">
+                View resident profile
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="feed">
+
+        <div class="feed-header">
+            <h1>For You</h1>
+            <p>Updates from your community</p>
+        </div>
+
+        <div class="post-card">
+            <h3>Welcome to Local Zero</h3>
+            <p>This is your community feed. More posts will appear here.</p>
+        </div>
+
+        <div class="post-card">
+            <h3>New update</h3>
+            <p>System is now running smoother and cleaner UI is active.</p>
+        </div>
+
+    </main>
+
+    <aside class="sidebar right">
+        <h2 class="sidebar-title">Notifications</h2>
+
+        <div class="sidebar-card">
+            <p>No new notifications</p>
+        </div>
+    </aside>
+
 </div>
 
-<div class="left-sidebar">
-    <h2 class="sidebar-title">Your Community</h2>
-</div>
-
-<div class="right-sidebar">
-    <h2 class="sidebar-title">Notifications</h2>
-</div>
-
-<script src="/app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
-
-
-
