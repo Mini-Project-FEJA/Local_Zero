@@ -2,21 +2,54 @@ package feja.localzero.service;
 
 import feja.localzero.entity.User;
 import feja.localzero.repo.UserRepository;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+
+import java.util.Optional;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+
+
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    public User register(User user) {
+
+
+    /*public User register(User user) {
         //behöver hasha password senare
         return userRepository.save(user);
     }
+
+     */
+
+    public User registerUser(User user){
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPasswordHash(encodedPassword);
+
+        System.out.println("Encoded password" + encodedPassword);
+        user.setPasswordHash(encodedPassword);
+        userRepository.save(user);
+
+        return user;
+    }
+
+    /**
+     * Metod för att authenticate en user genom att verifiera  password
+     */
+    public boolean authenticate(User user, String password){
+        return passwordEncoder.matches(password, user.getPasswordHash());
+    }
+
+
 
     public User getById(Long id) {
         return userRepository.findById(id)
@@ -33,8 +66,16 @@ public class UserService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    public boolean login(String username, String password) {
-        User user = getByUsername(username);
-        return user.getPasswordHash().equals(password); //byt ut mot hashat pw senare
+    public User login(String username, String password) {
+        Optional<User> userOpt = userRepository.findByUsername(username);
+        if (userOpt.isPresent()){
+            User user = userOpt.get();
+            if (authenticate(user,password)){
+                return user;
+            }
+        }
+        throw new RuntimeException("Invalid username or password");
     }
+
+
 }
