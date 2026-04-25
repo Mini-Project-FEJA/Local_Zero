@@ -1,3 +1,4 @@
+//All JavaScript som rör Login + Register page
 
 const adminBtn = document.getElementById("admin-button");
 if (adminBtn) {
