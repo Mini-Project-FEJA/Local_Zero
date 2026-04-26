@@ -1,0 +1,95 @@
+body {
+    background-color: #f7f3ed;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 320px 1fr 320px;
+    min-height: 100vh;
+    gap: 20px;
+    padding: 20px;
+}
+
+.sidebar {
+    background: #efd8d6;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(66, 43, 35, 0.15);
+}
+
+.sidebar-title {
+    margin-top: 0;
+    font-size: 18px;
+    color: #422b23;
+}
+
+.sidebar-card {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f7f3ed;
+    border-radius: 10px;
+    color: #422b23;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #dba1a2;
+    color: #422b23;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-primary:hover {
+    background: #c2c6b9;
+}
+
+#visit-resident-profile {
+    margin-top: 30px;
+    height: 50px;
+    width: 200px;
+    background-color: #C2C6B9;
+    border-radius: 4px;
+    font-family: Verdana, serif;
+    color: #422B23;
+    transition-duration: 0.4s;
+    border: none;
+}
+
+#visit-resident-profile:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
+    background-color: #9EA490;
+}
+
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feed-header {
+    background: #efd8d6;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(66, 43, 35, 0.12);
+    color: #422b23;
+}
+
+.feed-header p {
+    margin: 5px 0 0;
+    color: #422b23;
+    opacity: 0.8;
+}
+
+.post-card {
+    background: #f7f3ed;
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(66, 43, 35, 0.12);
+    color: #422b23;
+    border-left: 6px solid #9EA490;
+}

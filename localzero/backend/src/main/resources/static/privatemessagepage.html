@@ -2,24 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="privatemessagepage.css">
   <title>Title</title>
 </head>
 <body class="message-body">
 
-<h1>Messages</h1>
-<script src="app.js"></script>
-<div class="message-layout">
-    <aside class="message-sidebar-left">
-        <h2 class="sidebar-title">Your Community</h2>
+<div class="layout">
+<aside class="sidebar left">
+    <h2 class="sidebar-title">Friends</h2>
 
-        <div class="sidebar-card">
-            <button class="btn-primary" id="visit-resident-profile">
-                View resident profile
-            </button>
-        </div>
-    </aside>
+    <div class="sidebar-card">
+        <button class="btn-primary" id="visit-resident-profile">
+            View resident profile
+        </button>
+    </div>
+    <a class="btn" href="frontpage.html">Back to feed</a>
+
+</aside>
+
+<div class="chat-container">
+
+    <div class="chat-header">
+        <h2>Messages</h2>
+    </div>
+
+    <div class="chat-box">
+        <div class="message received">Message</div>
+        <div class="message sent">Message</div>
+        <div class="message received">Message</div>
+    </div>
+
+    <div class="chat-input-area">
+        <input type="text" placeholder="Write a message...">
+        <button>Send</button>
+    </div>
+
 </div>
-
+</div>
 </body>
 </html>
