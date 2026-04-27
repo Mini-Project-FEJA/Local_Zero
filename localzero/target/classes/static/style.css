@@ -221,3 +221,24 @@ h3 {
     margin-left: calc(250px + 40px);
     margin-right: calc(250px + 40px);
 }
+
+#account-information-box {
+    width: 300px;
+    height: 200px;
+    background-color: #7C846A;
+    align-content: center;
+    justify-content: center;
+
+}
+
+#account-box-pfp {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+#account-box-logout-button {
+    font-size: 20px;
+    width: 100px;
+    height: 50px;
+}
