@@ -41,7 +41,8 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-//    @Column(nullable = false)
-//    private Long communityId;
+    @ManyToOne
+    @JoinColumn(name = "community_id")
+    private Community community;
 
 }
