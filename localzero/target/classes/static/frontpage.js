@@ -12,31 +12,43 @@ const createInitiativeButton = document.getElementById("create-initiative-button
 if (createInitiativeButton) {
     createInitiativeButton.addEventListener("click", async function(e) {
 
-        const user = localStorage.getItem("user");
+        const currentUser = localStorage.getItem("user");
+        const user = JSON.parse(currentUser);
 
         const titleInput = document.getElementById("initiative-title");
-        const startDateInput = document.getElementById("initiative-start-date");
-        const startTimeInput = document.getElementById("initiative-start-time");
-        const endDateInput = document.getElementById("initiative-end-date");
-        const endTimeInput = document.getElementById("initiative-end-time");
-        const categoryInput = document.getElementById("initiative-categories");
+        const startInput = document.getElementById("initiative-start");
+        const endInput = document.getElementById("initiative-end");
+        const categoryInput = document.getElementById("initiative-category");
         const locationInput = document.getElementById("initiative-location");
         const visibilityInput = document.getElementById("initiative-visibility");
         const descriptionInput = document.getElementById("initiative-description-field");
 
         const initiative = {
+            user: user,
             title: titleInput.value,
-            startDate: startDateInput.value,
-            startTime: startTimeInput.value,
-            endDate: endDateInput.value,
-            endTime: endTimeInput.value,
+            startTime: startInput.value,
+            endTime: endInput.value,
             category: categoryInput.value,
             location: locationInput.value,
             visibility: visibilityInput.value,
             description: descriptionInput.value,
-
         }
 
+        console.log(initiative);
+
+        try {
+            const response = await fetch("http://localhost:8081/create-initiative", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(initiative)
+            });
+            console.log(response);
+
+        } catch (err) {
+            console.error(err);
+        }
     })
 
 }
