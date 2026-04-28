@@ -37,6 +37,42 @@
             <p>Initiative description</p>
         </div>
 
+        <div>
+            <button class="btn-primary" id="new-initiative-button">New initiative</button>
+        </div>
+
+        <div class="popup-box visible" id="initiative-popup">
+            <h2>Create new initiative</h2>
+            <h3>Title:<input class="initiative-input" id="initiative-title" type="text" placeholder="E.g disco i Trelleborg"></h3>
+            <h3>Event begins:
+                <input class="initiative-input" id="initiative-start-date" type="date" name="">
+                <input class="initiative-input" id="initiative-start-time" type="time"></h3>
+            <h3>Event ends:
+                <input class="initiative-input" id="initiative-end-date" type="date" name="">
+                <input class="initiative-input" id="initiative-end-time" type="time"></h3>
+            <h3>Category:
+                <select class="initiative-input" id="initiative-category">
+                    <option value="music">Music</option>
+                    <option value="sport">Sport</option>
+                </select>
+            </h3>
+            <h3>Location:<input class="initiative-input" id="initiative-location" type="text"></h3>
+            <h3>Visibility
+                <select class="initiative-input initiative-visibility" id="initiative-visibility" required>
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                    <option value="residents_only">Residents only</option>
+                </select>
+            </h3>
+            <label for="initiative-description-field">Description:</label>
+            <br/>
+            <textarea rows="5" id="initiative-description-field" placeholder="Describe your event"></textarea>
+            <br/>
+            <button class="btn-primary" id="create-initiative-button">Create</button>
+
+
+        </div>
+
     </main>
 
     <aside class="sidebar right">
@@ -49,6 +85,6 @@
 
 </div>
 
-<script src="app.js"></script>
+<script src="/frontpage.js"></script>
 </body>
 </html>
