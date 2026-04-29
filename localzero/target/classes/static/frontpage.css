@@ -102,20 +102,20 @@ body {
 }
 
 #new-initiative-button {
-    width: 120px;
+    width: 200px;
     height: 80px;
     font-size: 20px;
 }
 
 .popup-box {
-    width: 700px;
-    height: 700px;
+    width: 500px;
+    height: 600px;
     display: grid;
-    columns: 1;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 10fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
+
+    gap: 5px;
     background-color: var(--light-pink);
-    padding: 20px;
+    padding: 30px;
     font-size: 25px;
     position: absolute;
     top: 50%;
@@ -131,14 +131,14 @@ body {
 }
 
 .popup-box h2 {
-    font-size: 32px;
-    grid-column: 1;
+    font-size: 40px;
+    grid-column: span 2;
 }
 
-.popup-box h3, label {
+.popup-box label {
     font-size: 25px;
+    font-weight: bold;
     grid-column: 1;
-
 }
 
 .initiative-label  {
@@ -146,7 +146,13 @@ body {
 }
 
 .initiative-input {
+    border: #7C846A solid 2px;
     grid-column: 2;
+}
+
+#initiative-description-field {
+    grid-column: span 2;
+    width: 500px;
 }
 
 .visible {
@@ -154,14 +160,9 @@ body {
 }
 
 #create-initiative-button {
-    width: 250px;
+    width: 120px;
     height: 50px;
     font-size: 20px;
-    align-items: center;
-    justify-content: center;
-}
-
-#initiative-description-field {
-    width: 500px;
-    font-size: 25px;
+    justify-self: center;
+    grid-column: span 2;
 }

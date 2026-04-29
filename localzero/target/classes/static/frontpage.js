@@ -1,11 +1,14 @@
 //All JavaScript för frontpage
 
 document.getElementById("new-initiative-button").addEventListener("click",function () {
-    const popupBox = document.getElementById("initiative-popup");
-    popupBox.classList.toggle("visible");
+    toggleInitiativePopup();
     console.log("popup visible");
 })
 
+function toggleInitiativePopup() {
+    const popupBox = document.getElementById("initiative-popup");
+    popupBox.classList.toggle("visible");
+}
 
 const createInitiativeButton = document.getElementById("create-initiative-button");
 
@@ -44,7 +47,12 @@ if (createInitiativeButton) {
                 },
                 body: JSON.stringify(initiative)
             });
-            console.log(response);
+
+            if (response.ok) {
+                toggleInitiativePopup();
+            } else {
+                console.log("Couldn't create initiative: " + response);
+            }
 
         } catch (err) {
             console.error(err);

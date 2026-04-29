@@ -43,28 +43,35 @@
 
         <div class="popup-box visible" id="initiative-popup">
             <h2>Create new initiative</h2>
-            <h3>Title:<input class="initiative-input" id="initiative-title" type="text" placeholder="E.g disco i Trelleborg"></h3>
-            <h3>Event begins:
-                <input class="initiative-input" id="initiative-start" type="datetime-local">
-            <h3>Event ends:
-                <input class="initiative-input" id="initiative-end" type="datetime-local">
-            <h3>Category:
-                <select class="initiative-input" id="initiative-category">
-                    <option value="music">Music</option>
-                    <option value="sport">Sport</option>
-                </select>
-            </h3>
-            <h3>Location:<input class="initiative-input" id="initiative-location" type="text"></h3>
-            <h3>Visibility
-                <select class="initiative-input initiative-visibility" id="initiative-visibility" required>
-                    <option value="public">Public</option>
-                    <option value="private">Private</option>
-                    <option value="residents_only">Residents only</option>
-                </select>
-            </h3>
+
+            <label for="initiative-title">Title:</label>
+            <input class="initiative-input" id="initiative-title" type="text" placeholder="E.g disco i Trelleborg">
+
+            <label for="initiative-start">Event begins:</label>
+            <input class="initiative-input" id="initiative-start" type="datetime-local">
+
+            <label for="initiative-end">Event ends:</label>
+            <input class="initiative-input" id="initiative-end" type="datetime-local">
+
+            <label for="initiative-category">Category:</label>
+            <select class="initiative-input" id="initiative-category">
+                <option value="MUSIC">Music</option>
+                <option value="SPORT">Sport</option>
+            </select>
+
+            <label for="initiative-location">Location:</label>
+            <input class="initiative-input" id="initiative-location" type="text">
+
+            <label for="initiative-visibility">Visibility</label>
+            <select class="initiative-input initiative-visibility" id="initiative-visibility" required>
+                <option value="PUBLIC">Public</option>
+                <option value="NEIGHBOURHOOD_ONLY">Neighbourhood</option>
+                <option value="PRIVATE">Private</option>
+            </select>
+
             <label for="initiative-description-field">Description:</label>
             <br/>
-            <textarea rows="5" id="initiative-description-field" placeholder="Describe your event"></textarea>
+            <textarea rows="5" class="initiative-input" id="initiative-description-field" placeholder="Describe your event"></textarea>
             <br/>
             <button class="btn-primary" id="create-initiative-button">Create</button>
 
