@@ -112,7 +112,6 @@ body {
     height: 600px;
     display: grid;
     grid-template-columns: 1fr 2fr;
-
     gap: 5px;
     background-color: var(--light-pink);
     padding: 30px;
@@ -126,13 +125,26 @@ body {
     box-shadow: 0 6px 20px rgba(66, 43, 35, 0.12);
 }
 
+#popup-box-top {
+    background: linear-gradient(135deg, #DBA1A2, #efd8d6);
+    grid-column: 1 / span 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
 .popup-box > *, input, select {
     font-size: 25px;
 }
 
 .popup-box h2 {
+    color: white;
     font-size: 40px;
-    grid-column: span 2;
+    margin: 0;
+
 }
 
 .popup-box label {
@@ -165,4 +177,16 @@ body {
     font-size: 20px;
     justify-self: center;
     grid-column: span 2;
+}
+
+#cancel-initiative-popup {
+    background-color: #ffffff;
+    color: #7f756f;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 25px;
+    width: 40px;
+    height: 40px;
+    justify-self: end;
+    cursor: pointer;
 }

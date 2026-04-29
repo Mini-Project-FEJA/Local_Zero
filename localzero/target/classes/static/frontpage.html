@@ -38,11 +38,14 @@
         </div>
 
         <div>
-            <button class="btn-primary" id="new-initiative-button">New initiative</button>
+            <button class="btn-primary toggle-initiative-button" id="new-initiative-button">New initiative</button>
         </div>
 
         <div class="popup-box visible" id="initiative-popup">
-            <h2>Create new initiative</h2>
+            <div id="popup-box-top">
+                <h2>Create new initiative</h2>
+                <button class="cancel-popup, toggle-initiative-button" id="cancel-initiative-popup">X</button>
+            </div>
 
             <label for="initiative-title">Title:</label>
             <input class="initiative-input" id="initiative-title" type="text" placeholder="E.g disco i Trelleborg">

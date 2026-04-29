@@ -1,9 +1,11 @@
 //All JavaScript för frontpage
 
-document.getElementById("new-initiative-button").addEventListener("click",function () {
-    toggleInitiativePopup();
-    console.log("popup visible");
-})
+
+document.querySelectorAll(".toggle-initiative-button").forEach(button => {
+    button.addEventListener("click", function () {
+        toggleInitiativePopup();
+    })
+});
 
 function toggleInitiativePopup() {
     const popupBox = document.getElementById("initiative-popup");
