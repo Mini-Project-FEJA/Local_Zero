@@ -7,9 +7,9 @@ function navigate(id, url) {
     }
 }
 
-navigate("admin-button", "loginpage.html");
-navigate("resident-button", "loginpage.html");
-navigate("go-to-register-button", "registerpage.html");
+navigate("admin-button", "login.html");
+navigate("resident-button", "login.html");
+navigate("go-to-register-button", "register.html");
 navigate("login-button", "frontpage.html");
 navigate("register-button", "frontpage.html");
-navigate("visit-resident-profile", "profilepage.html");
+navigate("visit-resident-profile", "profile.html");

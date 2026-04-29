@@ -13,6 +13,6 @@ public class PageController {
 
     @GetMapping("/profile")
     public String profile() {
-        return "forward:/profilepage.html";
+        return "forward:/profile.html";
     }
 }

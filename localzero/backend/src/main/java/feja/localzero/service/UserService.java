@@ -1,6 +1,8 @@
 package feja.localzero.service;
 
+import feja.localzero.entity.Community;
 import feja.localzero.entity.User;
+import feja.localzero.repo.CommunityRepository;
 import feja.localzero.repo.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,12 +15,14 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final CommunityRepository communityRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
 
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, CommunityRepository communityRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.communityRepository = communityRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -64,6 +68,20 @@ public class UserService {
     public User getByEmail(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    //kan tas bort om vi använder registrering som sätter community id
+    public User assignUserToCommunity(Long userId, Long communityId) {
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Community community = communityRepository.findById(communityId)
+                .orElseThrow(() -> new RuntimeException("Community not found"));
+
+        user.setCommunity(community);
+
+        return userRepository.save(user);
     }
 
     public User login(String username, String password) {
