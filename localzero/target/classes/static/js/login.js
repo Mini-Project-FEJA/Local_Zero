@@ -3,21 +3,21 @@
 const adminBtn = document.getElementById("admin-button");
 if (adminBtn) {
     adminBtn.addEventListener("click", function() {
-        window.location.href = "loginpage.html";
+        window.location.href = "login.html";
     });
 }
 
 const residentBtn = document.getElementById("resident-button");
 if (residentBtn) {
     residentBtn.addEventListener("click", function() {
-        window.location.href = "loginpage.html";
+        window.location.href = "login.html";
     });
 }
 
 const goToRegisterBtn = document.getElementById("go-to-register-button");
 if (goToRegisterBtn) {
     goToRegisterBtn.addEventListener("click", function() {
-        window.location.href = "registerpage.html";
+        window.location.href = "register.html";
     });
 }
 
