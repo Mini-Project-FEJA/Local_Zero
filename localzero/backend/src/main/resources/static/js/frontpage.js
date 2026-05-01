@@ -42,7 +42,7 @@ if (createInitiativeButton) {
         console.log(initiative);
 
         try {
-            const response = await fetch("http://localhost:8081/create-initiative", {
+            const response = await fetch("http://localhost:8081/initiatives/create-initiative", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -60,5 +60,12 @@ if (createInitiativeButton) {
             console.error(err);
         }
     })
+
+}
+
+function createInitiativeCard()  {
+    const initiativeCard = document.getElementById(".post-card");
+
+    document.body.appendChild(initiativeCard);
 
 }
