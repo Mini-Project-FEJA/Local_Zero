@@ -1,5 +1,6 @@
 package feja.localzero.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,12 +28,21 @@ public class User {
     @Column(nullable = false)
     private String username;
 
+    @JsonIgnore
     @Column(nullable = false)
     private String passwordHash;
+
+    @Transient //sparas ej i databas
+    //raw lösenord direkt från användaren
+    private String password;
 
     private String location;
 
     @Column(nullable = false)
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "community_id")
+    private Community community;
 
 }

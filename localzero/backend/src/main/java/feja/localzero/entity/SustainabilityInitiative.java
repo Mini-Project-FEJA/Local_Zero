@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 @Entity
 @Getter
 @Setter
@@ -29,7 +33,10 @@ public class SustainabilityInitiative {
     private String description;
 
     private String location;
-    private float durationHours;
+
+    private LocalDateTime startTime;
+
+    private LocalDateTime endTime;
 
     @Enumerated(EnumType.STRING)
     private InitiativeCategory category;
