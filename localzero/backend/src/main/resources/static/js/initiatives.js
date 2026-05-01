@@ -13,16 +13,18 @@ async function fetchAllInitiatives() {
         if (!response.ok) {
             throw new Error("Error fetching all initiatives")
         }
-
         const allInitiatives = await response.json();
 
+        const userString = localStorage.getItem("user");
+        const user = JSON.parse(userString);
+
         allInitiatives.forEach(initiative => {
-            createInitiativeCard(initiative, "all-initiatives-container");
+            if (user.id !== initiative.user.id) {
+                createInitiativeCard(initiative, "all-initiatives-container");
+            }
         })
 
         console.log(allInitiatives);
-
-
 
     } catch (error) {
         console.log(error);
@@ -53,6 +55,11 @@ async function fetchInitiativesByUserID() {
             createInitiativeCard(initiative, "my-initiatives-container");
         })
 
+        const headers = document.querySelectorAll("#my-initiatives-container > .initiative-card > .card-header");
+        headers.forEach((header) => {
+            header.classList.add("my-initiatives-header");
+        });
+
         console.log(myInitiatives);
 
     } catch (error) {
@@ -69,7 +76,6 @@ function createInitiativeCard(initiative, elementID) {
     card.innerHTML = `
         <div class="card-header">
             <h2 class="card-title"></h2>
-            <button class="join-initiative-button">JOIN</button>
         </div>
         <div class="card-middle">
             <h3 class="card-host"></h3>
@@ -91,6 +97,13 @@ function createInitiativeCard(initiative, elementID) {
     card.querySelector(".card-description").textContent = initiative.description || "No description available";
     card.querySelector(".card-time").textContent = `${initiativeStarTime} - ${initiativeEndTime}`
     card.querySelector(".card-visibility").textContent = initiative.visibility;
+
+    const userString = localStorage.getItem("user")
+    const user = JSON.parse(userString);
+    if (user.id !== initiative.user.id ) {
+        card.querySelector(".card-header").innerHTML +=
+            `<button class="join-initiative-button">JOIN</button>`
+    }
 
     initiativeContainer.appendChild(card);
 
