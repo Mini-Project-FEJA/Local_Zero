@@ -33,11 +33,14 @@
     </div>
 
     <div class="chat-input-area">
-        <input type="text" placeholder="Write a message...">
-        <button>Send</button>
+        <input id="messageInput" type="text" placeholder="Write a message...">
+        <button id="sendButton">Send</button>
     </div>
 
 </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
+<script src="js/privatemessage.js"></script>
 </body>
 </html>
