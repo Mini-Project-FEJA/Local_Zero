@@ -6,8 +6,18 @@
     --weird-grey: #9EA490;
 }
 
-.initiatives-header {
-    display: grid;
+#initiatives-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+    margin: 5px;
+}
+
+#new-initiative-button {
+    width: 200px;
+    height: 80px;
+    font-size: 20px;
 }
 
 .initiative-container {
@@ -40,8 +50,17 @@
     margin: 0;
 }
 
-.my-initiatives-header {
+h1 {
+    font-size: 40px;
+    margin: 0;
+}
+
+.hosted-initiatives-header {
     background-color: #87cdf6;
+}
+
+.joined-initiatives-header {
+    background-color: #a9f5a9;
 }
 
 .card-middle {
@@ -176,12 +195,6 @@ body {
     opacity: 0.8;
 }
 
-#new-initiative-button {
-    width: 200px;
-    height: 80px;
-    font-size: 20px;
-}
-
 .popup-box {
     width: 500px;
     height: 600px;
@@ -219,7 +232,6 @@ body {
     color: white;
     font-size: 40px;
     margin: 0;
-
 }
 
 .popup-box label {

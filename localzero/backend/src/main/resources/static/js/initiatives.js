@@ -1,14 +1,13 @@
 
 async function initialize() {
-
     await fetchAllInitiatives();
-    await fetchInitiativesByUserID();
-
+    await fetchMyInitiatives();
 }
 
 async function fetchAllInitiatives() {
     try {
         const response = await fetch("http://localhost:8081/initiatives/get-all-initiatives")
+        const containerID = "all-initiatives-container";
 
         if (!response.ok) {
             throw new Error("Error fetching all initiatives")
@@ -20,7 +19,7 @@ async function fetchAllInitiatives() {
 
         allInitiatives.forEach(initiative => {
             if (user.id !== initiative.user.id) {
-                createInitiativeCard(initiative, "all-initiatives-container");
+                createInitiativeCard(initiative, containerID);
             }
         })
 
@@ -31,44 +30,48 @@ async function fetchAllInitiatives() {
     }
 }
 
-async function fetchInitiativesByUserID() {
+async function fetchMyInitiatives() {
 
-    const userString = localStorage.getItem("user");
-    const user = JSON.parse(userString);
+    const user = JSON.parse(localStorage.getItem("user"));
+    const containerID = "my-initiatives-container";
 
-    if (!user || !user.id) {
+    if (!user) {
         console.log("No user or user ID found in localStorage");
         return;
     }
     const userID = user.id;
 
     try {
-        const response = await fetch(`http://localhost:8081/initiatives/user/${userID}`);
+        const [hostedResponse, joinedResponse] = await Promise.all([
+            fetch(`http://localhost:8081/initiatives/hosted/${userID}`),
+            fetch(`http://localhost:8081/initiatives/joined/${userID}`)
+        ])
 
-        if (!response.ok) {
+        if (!hostedResponse.ok || !joinedResponse.ok) {
             throw new Error("Error fetching initiatives by ID")
         }
 
-        const myInitiatives = await response.json();
+        const hosted = await hostedResponse.json();
+        const joined = await joinedResponse.json();
 
-        myInitiatives.forEach(initiative => {
-            createInitiativeCard(initiative, "my-initiatives-container");
+        hosted.forEach(initiative => {
+            const card = createInitiativeCard(initiative, containerID);
+            card.querySelector(".card-header").classList.add("hosted-initiatives-header");
         })
 
-        const headers = document.querySelectorAll("#my-initiatives-container > .initiative-card > .card-header");
-        headers.forEach((header) => {
-            header.classList.add("my-initiatives-header");
-        });
-
-        console.log(myInitiatives);
+        joined.forEach(initiative => {
+            const card = createInitiativeCard(initiative, containerID);
+            card.querySelector(".card-header").classList.add("joined-initiatives-header");
+        })
 
     } catch (error) {
         console.log(error);
     }
 }
 
-function createInitiativeCard(initiative, elementID) {
-    const initiativeContainer = document.getElementById(elementID);
+function createInitiativeCard(initiative, containerID) {
+
+    const initiativeContainer = document.getElementById(containerID);
 
     const card = document.createElement("div");
     card.className = "initiative-card";
@@ -85,6 +88,7 @@ function createInitiativeCard(initiative, elementID) {
         <div class="card-footer">
             <span class="card-time"></span>
             <span class="card-visibility"></span>
+            <span class="card-location"></span>
         </div>
     `
 
@@ -97,16 +101,28 @@ function createInitiativeCard(initiative, elementID) {
     card.querySelector(".card-description").textContent = initiative.description || "No description available";
     card.querySelector(".card-time").textContent = `${initiativeStarTime} - ${initiativeEndTime}`
     card.querySelector(".card-visibility").textContent = initiative.visibility;
+    card.querySelector(".card-location").textContent = initiative.location;
+
 
     const userString = localStorage.getItem("user")
     const user = JSON.parse(userString);
-    if (user.id !== initiative.user.id ) {
-        card.querySelector(".card-header").innerHTML +=
-            `<button class="join-initiative-button">JOIN</button>`
-    }
 
+    const isHost = (user.id === initiative.user.id);
+    const isParticipant = initiative.participants?.some(p => p.id === user.id);
+
+    if (!(isHost || isParticipant)) {
+        const joinButton = document.createElement("button");
+        joinButton.className = "join-initiative-button";
+        joinButton.textContent = "JOIN";
+        joinButton.addEventListener("click", () => {
+            joinInitiative(initiative.id);
+        })
+
+        card.querySelector(".card-header").appendChild(joinButton);
+    }
     initiativeContainer.appendChild(card);
 
+    return card;
 }
 
 function formatDateTime(date) {
@@ -177,6 +193,26 @@ if (createInitiativeButton) {
             console.error(err);
         }
     })
+}
+
+async function joinInitiative(initiativeID) {
+    console.log("Join initiative: " , initiativeID);
+
+    const currentUser = localStorage.getItem("user");
+    const user = JSON.parse(currentUser);
+    const userID = user.id;
+
+    try {
+        const response = await fetch(`http://localhost:8081/initiatives/${initiativeID}/join/${userID}`, {
+            method: 'POST'
+        })
+        if (response.ok) {
+            alert("You have joined initiative")
+        }
+    } catch (error) {
+        console.error(error)
+    }
+
 }
 
 initialize();

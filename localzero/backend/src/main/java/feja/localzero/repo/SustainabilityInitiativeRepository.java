@@ -23,4 +23,6 @@ public interface SustainabilityInitiativeRepository extends JpaRepository<Sustai
             InitiativeCategory category,
             Visibility visibility
     );
+
+    List<SustainabilityInitiative> findByParticipants_Id(Long userId);
 }
