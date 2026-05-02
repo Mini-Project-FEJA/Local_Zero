@@ -51,4 +51,10 @@ public class InitiativeService {
     public List<SustainabilityInitiative> getByCategoryAndVisibility(InitiativeCategory category, Visibility visibility) {
         return repo.findByCategoryAndVisibility(category, visibility);
     }
+
+
+
+
+
+
 }
