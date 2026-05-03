@@ -1,7 +1,7 @@
 
 async function initialize() {
-    await fetchAllInitiatives();
     await fetchMyInitiatives();
+    await fetchAllInitiatives();
 }
 
 async function fetchAllInitiatives() {
