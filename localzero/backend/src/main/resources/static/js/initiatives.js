@@ -18,7 +18,10 @@ async function fetchAllInitiatives() {
         const user = JSON.parse(userString);
 
         allInitiatives.forEach(initiative => {
-            if (user.id !== initiative.user.id) {
+            const isHost = (user.id === initiative.user.id);
+            const isParticipant = initiative.participants?.some(p => p.id === user.id);
+
+            if (!(isHost || isParticipant)) {
                 createInitiativeCard(initiative, containerID);
             }
         })
@@ -101,7 +104,7 @@ function createInitiativeCard(initiative, containerID) {
     card.querySelector(".card-description").textContent = initiative.description || "No description available";
     card.querySelector(".card-time").textContent = `${initiativeStarTime} - ${initiativeEndTime}`
     card.querySelector(".card-visibility").textContent = initiative.visibility;
-    card.querySelector(".card-location").textContent = initiative.location;
+    card.querySelector(".card-location").textContent = `Location: ${initiative.location || "Not specified"}`;
 
 
     const userString = localStorage.getItem("user")

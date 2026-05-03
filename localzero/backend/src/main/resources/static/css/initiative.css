@@ -15,25 +15,25 @@
 }
 
 #new-initiative-button {
-    width: 200px;
-    height: 80px;
-    font-size: 20px;
+    width: 140px;
+    height: 60px;
+    font-size: 18px;
 }
 
 .initiative-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 20px;
     padding-left: 20px;
     padding-right: 20px;
     margin: 0;
+    font-size: 16px;
 }
 
 .initiative-card {
     background: var(--light-pink);
     border-radius: 15px;
     padding: 10px;
-    font-size: 20px;
     margin: 0;
 }
 
@@ -43,7 +43,7 @@
     background: var(--dark-pink);
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    font-size: 24px;
+    font-size: 18px;
     align-items: center;
     padding-left: 10px;
     padding-right: 10px;
@@ -101,11 +101,16 @@ h1 {
     justify-self: end;
     align-self: center;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .join-initiative-button:hover {
     background: #87cdf6;
+}
+
+.line-divider {
+    width: 80%;
+    border: 1px solid #e0b1b1;
 }
 
 body {
