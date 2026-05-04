@@ -6,6 +6,9 @@ import feja.localzero.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/users")
@@ -36,8 +39,13 @@ public class UserController {
     */
     @PostMapping("/login")
     public User login(@RequestBody LoginRequest request){
+
         return service.login(request.getUsername(), request.getPassword());
     }
 
+    @GetMapping("/my-community/{communityId}")
+    public List<User> getUsersInMyCommunity(@PathVariable Long communityId) {
+        return service.getUsersByCommunityId(communityId);
+    }
 
 }
