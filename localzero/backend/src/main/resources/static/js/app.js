@@ -15,3 +15,5 @@ navigate("register-button", "frontpage.html");
 navigate("visit-resident-profile", "profile.html");
 navigate("visit-all-initiatives", "initiatives.html")
 navigate("visit-frontpage", "frontpage.html")
+navigate("my-profile", "profile.html");
+navigate("inbox-button", "inbox.html");

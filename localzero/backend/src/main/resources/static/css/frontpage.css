@@ -25,13 +25,23 @@ body {
 }
 
 .sidebar-title {
-    margin-top: 0;
+    padding-top: 15px;
+    padding-left: 15px;
     font-size: 18px;
     color: #422b23;
 }
 
-.sidebar-card {
-    margin-top: 15px;
+.sidebar-card-right {
+    margin: 15px;
+    padding: 15px;
+    background: #f7f3ed;
+    border-radius: 10px;
+    color: #422b23;
+    width: 150px;
+}
+
+.sidebar-card-left {
+    margin: 15px;
     padding: 15px;
     background: #f7f3ed;
     border-radius: 10px;
@@ -51,25 +61,16 @@ body {
 }
 
 .btn-primary:hover {
-    background: #c2c6b9;
+    background: #B97072;
 }
 
 #visit-resident-profile {
-    margin-top: 30px;
-    height: 50px;
-    width: 200px;
-    background-color: #C2C6B9;
-    border-radius: 4px;
-    font-family: Verdana, serif;
-    color: #422B23;
-    transition-duration: 0.4s;
-    border: none;
+    background-color: #9EA490;
 }
 
 #visit-resident-profile:hover {
+    background-color: #7C846A;
     cursor: pointer;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
-    background-color: #9EA490;
 }
 
 .feed {
@@ -189,4 +190,17 @@ body {
     height: 40px;
     justify-self: end;
     cursor: pointer;
+}
+
+.notifications-box {
+    background-color: #9EA490;
+    border-radius: 16px;
+    border: none;
+    margin-top: 15px;
+    padding: 5px;
+}
+
+.inbox-profile-box {
+    display: flex;
+    gap: 10px;
 }
