@@ -6,28 +6,24 @@ async function initialize() {
 
 async function fetchAllInitiatives() {
     try {
-        const response = await fetch("http://localhost:8081/initiatives/get-all-initiatives")
         const containerID = "all-initiatives-container";
+        const container = document.getElementById(containerID);
+        container.innerHTML = "";
 
-        if (!response.ok) {
-            throw new Error("Error fetching all initiatives")
-        }
-        const allInitiatives = await response.json();
+        const allInitiatives = await InitiativeProxy.getInitiatives("get-all-initiatives")
 
         const userString = localStorage.getItem("user");
         const user = JSON.parse(userString);
 
-        allInitiatives.forEach(initiative => {
+        console.log(allInitiatives);
+        for(const initiative of allInitiatives) {
             const isHost = (user.id === initiative.user.id);
             const isParticipant = initiative.participants?.some(p => p.id === user.id);
 
             if (!(isHost || isParticipant)) {
-                createInitiativeCard(initiative, containerID);
+                await createInitiativeCard(initiative, containerID);
             }
-        })
-
-        console.log(allInitiatives);
-
+        }
     } catch (error) {
         console.log(error);
     }
@@ -37,6 +33,8 @@ async function fetchMyInitiatives() {
 
     const user = JSON.parse(localStorage.getItem("user"));
     const containerID = "my-initiatives-container";
+    const container = document.getElementById(containerID);
+    container.innerHTML = "";
 
     if (!user) {
         console.log("No user or user ID found in localStorage");
@@ -45,36 +43,58 @@ async function fetchMyInitiatives() {
     const userID = user.id;
 
     try {
-        const [hostedResponse, joinedResponse] = await Promise.all([
-            fetch(`http://localhost:8081/initiatives/hosted/${userID}`),
-            fetch(`http://localhost:8081/initiatives/joined/${userID}`)
+        const [hostedInitiatives, joinedInitiatives] = await Promise.all([
+            InitiativeProxy.getInitiatives(`hosted/${userID}`),
+            InitiativeProxy.getInitiatives(`joined/${userID}`)
         ])
 
-        if (!hostedResponse.ok || !joinedResponse.ok) {
-            throw new Error("Error fetching initiatives by ID")
+        for(const hosted of hostedInitiatives) {
+            const card = await createInitiativeCard(hosted, containerID);
+            card.querySelector(".card-header").classList.add("hosted-initiatives-header");
         }
 
-        const hosted = await hostedResponse.json();
-        const joined = await joinedResponse.json();
-
-        hosted.forEach(initiative => {
-            const card = createInitiativeCard(initiative, containerID);
-            card.querySelector(".card-header").classList.add("hosted-initiatives-header");
-        })
-
-        joined.forEach(initiative => {
-            const card = createInitiativeCard(initiative, containerID);
+        for(const joined of joinedInitiatives) {
+            const card = await createInitiativeCard(joined, containerID);
             card.querySelector(".card-header").classList.add("joined-initiatives-header");
-        })
+        }
 
     } catch (error) {
         console.log(error);
     }
 }
 
-function createInitiativeCard(initiative, containerID) {
+const InitiativeProxy = {
+    cache: {},
+
+    async getInitiatives(endpoint,forceRefresh = false) {
+        if (this.cache[endpoint] && !forceRefresh) {
+            return this.cache[endpoint];
+        }
+
+        const response = await fetch(`http://localhost:8081/initiatives/${endpoint}`);
+        if (!response.ok) {
+            throw new Error("Kunde inte hämta initiative");
+        }
+        const data = await response.json();
+        this.cache[endpoint] = data;
+        return data;
+    },
+
+    invalidateCache() {
+        console.log("Clear cache");
+        this.cache = {};
+    }
+}
+
+async function createInitiativeCard(initiative, containerID) {
 
     const initiativeContainer = document.getElementById(containerID);
+
+    const categories = await EnumProxy.getEnums("categories");
+    const visibility = await EnumProxy.getEnums("visibility");
+
+    const categoryObj = categories.find(cat => cat.name === initiative.category);
+    const visibilityObj = visibility.find(vis => vis.name === initiative.visibility);
 
     const card = document.createElement("div");
     card.className = "initiative-card";
@@ -100,12 +120,11 @@ function createInitiativeCard(initiative, containerID) {
 
     card.querySelector(".card-title").textContent = initiative.title || "No title provided";
     card.querySelector(".card-host").textContent = `Host: ${initiative.user.username}`;
-    card.querySelector(".card-category").textContent = initiative.category;
+    card.querySelector(".card-category").textContent = categoryObj ? categoryObj.label : initiative.category;
     card.querySelector(".card-description").textContent = initiative.description || "No description available";
     card.querySelector(".card-time").textContent = `${initiativeStarTime} - ${initiativeEndTime}`
-    card.querySelector(".card-visibility").textContent = initiative.visibility;
+    card.querySelector(".card-visibility").textContent = visibilityObj ? visibilityObj.label : initiative.visibility;
     card.querySelector(".card-location").textContent = `Location: ${initiative.location || "Not specified"}`;
-
 
     const userString = localStorage.getItem("user")
     const user = JSON.parse(userString);
@@ -120,7 +139,6 @@ function createInitiativeCard(initiative, containerID) {
         joinButton.addEventListener("click", () => {
             joinInitiative(initiative.id);
         })
-
         card.querySelector(".card-header").appendChild(joinButton);
     }
     initiativeContainer.appendChild(card);
@@ -139,15 +157,67 @@ function formatDateTime(date) {
     });
 }
 
+document.querySelectorAll(".new-initiative-button").forEach(button => {
+    button.addEventListener("click", function () {
+        showPopupWindow();
+    })
+});
+
 document.querySelectorAll(".toggle-initiative-button").forEach(button => {
     button.addEventListener("click", function () {
         toggleInitiativePopup();
     })
 });
 
+async function showPopupWindow() {
+    const enumCategories = "categories";
+    const enumVisibility = "visibility"
+
+    await populateDropdown(enumCategories, "initiative-category");
+    await populateDropdown(enumVisibility, "initiative-visibility");
+    toggleInitiativePopup();
+}
+
+async function populateDropdown(enumType, elementId) {
+    const dropdown = document.getElementById(elementId);
+    const data = await EnumProxy.getEnums(enumType);
+
+    const oldOptions = dropdown.querySelectorAll("option:not(.placeholder-option)");
+    oldOptions.forEach(opt => opt.remove());
+
+    data.forEach(item => {
+        const option = new Option(item.label, item.name);
+        dropdown.add(option);
+    })
+}
+
 function toggleInitiativePopup() {
     const popupBox = document.getElementById("initiative-popup");
     popupBox.classList.toggle("visible");
+}
+
+async function fetchEnum(enumType) {
+    const response = await fetch(`http://localhost:8081/enums/${enumType}`);
+    const data = await response.json();
+    return data;
+}
+
+const EnumProxy = {
+    cache: {},
+
+    async getEnums(enumType) {
+        if (this.cache[enumType]) {
+            return this.cache[enumType];
+        }
+        try {
+            const enumData = await fetchEnum(enumType);
+            this.cache[enumType] = enumData;
+            return enumData;
+        } catch (error) {
+            console.error("Cache-fel", error);
+            throw error;
+        }
+    }
 }
 
 const createInitiativeButton = document.getElementById("create-initiative-button");
@@ -188,6 +258,9 @@ if (createInitiativeButton) {
 
             if (response.ok) {
                 toggleInitiativePopup();
+                InitiativeProxy.invalidateCache();
+                await fetchMyInitiatives();
+                await fetchAllInitiatives();
             } else {
                 console.log("Couldn't create initiative: " + response);
             }
@@ -211,6 +284,9 @@ async function joinInitiative(initiativeID) {
         })
         if (response.ok) {
             alert("You have joined initiative")
+            InitiativeProxy.invalidateCache();
+            await fetchMyInitiatives();
+            await fetchAllInitiatives();
         }
     } catch (error) {
         console.error(error)

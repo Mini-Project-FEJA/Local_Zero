@@ -1,9 +1,21 @@
 package feja.localzero.entity;
 
 public enum InitiativeCategory {
-    PARTY,
-    FOOD_AND_DRINK,
-    SPORT,
-    MUSIC,
-    MAINTENANCE
+    NONE("None"),
+    PARTY("Party"),
+    FOOD_AND_DRINK ("Food & Drink"),
+    SPORT ("Sport"),
+    MUSIC ("Music"),
+    MAINTENANCE ("Maintenance");
+
+    private final String label;
+
+    InitiativeCategory(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
 }
