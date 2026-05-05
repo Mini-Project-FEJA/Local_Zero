@@ -7,10 +7,12 @@
 
 body {
     background-color: #f7f3ed;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
 }
 
 .conversation-box {
@@ -20,6 +22,11 @@ body {
     padding: 20px;
     width: 100vh;
     gap: 15px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .sent-message-box {
@@ -95,9 +102,10 @@ body {
     flex-direction: row;
     align-items: flex-end;
     margin: 15px;
+    background: linear-gradient(to top, #efd8d6, transparent);
 }
 
-#send  {
+#save-message  {
     margin: 10px;
     color: #422B23;
     background-color: #e0b1b1;
@@ -106,7 +114,14 @@ body {
     padding: 10px;
 }
 
-#send:hover {
+#save-message:hover {
     background-color: #DBA1A2;
     cursor: pointer;
+}
+
+#messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    scrollbar-width: none; /* Firefox */
 }

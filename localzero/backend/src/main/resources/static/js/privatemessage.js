@@ -36,8 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             allMessages.innerHTML = "";
 
             messages.forEach(msg => {
-                const raw = msg.sentAt;
-                const formatted = raw.replace("T", " ");
+                const formatted = msg.sentAt.split(".")[0].replace("T", " ");
 
                 const messageElement = document.createElement("div");
                 const isSentMessage = msg.sender.id === user_id;
@@ -65,7 +64,54 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 allMessages.appendChild(messageElement);
+                requestAnimationFrame(() => {
+                    allMessages.scrollTop = allMessages.scrollHeight;
+                });
             });
         })
         .catch(err => console.error("Error loading inbox:", err));
+});
+
+document.getElementById('save-message').addEventListener('click', function() {
+    const messageContent = document.getElementById('messageInput').value;
+
+    const userRaw = localStorage.getItem("user");
+
+    if (!userRaw) {
+        console.error("No user in localStorage");
+        return;
+    }
+
+    const user = JSON.parse(userRaw);
+    const receiverId = user?.id;
+
+    if (!receiverId) {
+        console.error("Missing user.id:", user);
+        return;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const senderId = urlParams.get("sender_id");
+
+    // Skicka meddelandet som en vanlig textsträng
+    fetch(`http://localhost:8081/private-messages/send/${receiverId}/${senderId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/plain'
+        },
+        body: messageContent
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to send message");
+            }
+            return response.text(); // du returnerar inget JSON från backend
+        })
+        .then(() => {
+            console.log('Meddelandet skickades');
+            location.reload();
+        })
+        .catch((error) => {
+            console.error('Fel vid skickande av meddelande:', error);
+        });
 });

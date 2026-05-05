@@ -1,6 +1,7 @@
 package feja.localzero.controller;
 
 import feja.localzero.command.SendMessageCommand;
+import feja.localzero.dto.MessageRequest;
 import feja.localzero.entity.PrivateMessage;
 import feja.localzero.service.PrivateMessageService;
 import org.springframework.http.ResponseEntity;
@@ -22,17 +23,10 @@ public class PrivateMessageController {
         this.privateMessageService = privateMessageService;
     }
 
-    @MessageMapping("/send")
-    @SendTo("/topic/messages")
-    public PrivateMessage send(PrivateMessage message) {
-        System.out.println(message);
-        return sendMessageCommand.execute(message);
-    }
-
-    @PostMapping("/send/{receiverId}/{senderId}")
-    public void save(@RequestBody String message, @PathVariable Long receiverId,
-                     @PathVariable Long senderId) {
-        privateMessageService.sendMessage(senderId, receiverId, message);
+    @PostMapping("/private-messages/send/{receiverId}/{senderId}")
+    public ResponseEntity<PrivateMessage> send(@PathVariable Long receiverId, @PathVariable Long senderId, @RequestBody MessageRequest request) {
+        sendMessageCommand.execute(request.getContent(), receiverId, senderId);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/my-inbox/{user_id}")
