@@ -97,9 +97,11 @@ document.getElementById('save-message').addEventListener('click', function() {
     fetch(`http://localhost:8081/private-messages/send/${receiverId}/${senderId}`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'text/plain'
+            'Content-Type': 'application/json'
         },
-        body: messageContent
+        body: JSON.stringify({
+            content: messageContent
+        })
     })
         .then(response => {
             if (!response.ok) {
