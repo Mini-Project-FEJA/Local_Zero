@@ -3,13 +3,11 @@ package feja.localzero.controller;
 import feja.localzero.command.SendMessageCommand;
 import feja.localzero.entity.PrivateMessage;
 import feja.localzero.service.PrivateMessageService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,8 +29,24 @@ public class PrivateMessageController {
         return sendMessageCommand.execute(message);
     }
 
+    @PostMapping("/send/{receiverId}/{senderId}")
+    public void save(@RequestBody String message, @PathVariable Long receiverId,
+                     @PathVariable Long senderId) {
+        privateMessageService.sendMessage(senderId, receiverId, message);
+    }
+
     @GetMapping("/my-inbox/{user_id}")
     public List<PrivateMessage> getInbox(@PathVariable Long user_id) {
         return privateMessageService.getInbox(user_id);
+    }
+
+    @GetMapping("/private-messages/{receiverId}/{senderId}")
+    public List<PrivateMessage> getPrivateMessages(
+            @PathVariable Long receiverId,
+            @PathVariable Long senderId) {
+        System.out.println("Receiver ID: " + receiverId);
+        System.out.println("Sender ID: " + senderId);
+
+        return privateMessageService.getConversation(receiverId, senderId);
     }
 }
