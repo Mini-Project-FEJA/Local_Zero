@@ -1,7 +1,9 @@
+import {navigate, loadLeftSidebar} from "./app.js";
 
 async function initialize() {
     await fetchMyInitiatives();
     await fetchAllInitiatives();
+    await loadLeftSidebar();
 }
 
 async function fetchAllInitiatives() {
@@ -63,7 +65,7 @@ async function fetchMyInitiatives() {
     }
 }
 
-const InitiativeProxy = {
+export const InitiativeProxy = {
     cache: {},
 
     async getInitiatives(endpoint,forceRefresh = false) {
@@ -157,17 +159,21 @@ function formatDateTime(date) {
     });
 }
 
-document.querySelectorAll(".new-initiative-button").forEach(button => {
-    button.addEventListener("click", function () {
-        showPopupWindow();
-    })
-});
+export function loadPopupWindowButtons() {
+    document.querySelectorAll(".new-initiative-button").forEach(button => {
+        button.addEventListener("click", function () {
+            showPopupWindow();
+        })
+    });
+}
 
-document.querySelectorAll(".toggle-initiative-button").forEach(button => {
-    button.addEventListener("click", function () {
-        toggleInitiativePopup();
-    })
-});
+export function loadTogglePopupButtons() {
+    document.querySelectorAll(".toggle-initiative-button").forEach(button => {
+        button.addEventListener("click", function () {
+            toggleInitiativePopup();
+        })
+    });
+}
 
 async function showPopupWindow() {
     const enumCategories = "categories";

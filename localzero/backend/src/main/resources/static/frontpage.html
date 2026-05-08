@@ -4,29 +4,14 @@
     <meta charset="UTF-8">
     <title>Local Zero</title>
     <link rel="stylesheet" href="css/frontpage.css">
+    <link rel="stylesheet" href="css/sidebar.css">
     <link rel="icon" type="image/png" href="/favicon.ico">
 </head>
-
 <body>
 
 <div class="layout">
 
-    <aside class="sidebar left">
-        <h2 class="sidebar-title">Your Community</h2>
-
-        <div class="sidebar-card-left">
-            <button class="btn-primary" id="visit-all-initiatives">
-                View all initiatives
-            </button>
-        </div>
-
-        <h2 class="sidebar-title">Your Community</h2>
-        <div class="residents-card">
-            <div id="resident-list"></div>
-        </div>
-
-
-    </aside>
+    <aside class="sidebar left" id="left-sidebar"></aside>
 
     <main class="feed">
 
@@ -86,9 +71,7 @@
             <br/>
             <button class="btn-primary" id="create-initiative-button">Create</button>
 
-
         </div>
-
     </main>
 
     <aside class="sidebar right">
@@ -108,7 +91,6 @@
 
 </div>
 
-<script src="/js/frontpage.js"></script>
-<script src="/js/app.js"></script>
+<script src="/js/frontpage.js" type="module"></script>
 </body>
 </html>

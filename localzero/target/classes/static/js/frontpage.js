@@ -1,5 +1,13 @@
 //All JavaScript för frontpage
+import {loadLeftSidebar} from "./app.js";
+import {loadPopupWindowButtons, loadTogglePopupButtons} from "./initiatives.js";
 
+async function initialize() {
+    await loadLeftSidebar();
+    loadPopupWindowButtons();
+    loadTogglePopupButtons();
+}
+initialize();
 
 document.querySelectorAll(".toggle-initiative-button").forEach(button => {
     button.addEventListener("click", function () {

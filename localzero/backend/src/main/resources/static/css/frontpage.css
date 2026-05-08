@@ -17,20 +17,6 @@ body {
     padding: 20px;
 }
 
-.sidebar {
-    background: #efd8d6;
-    border-radius: 14px;
-    padding: 20px;
-    box-shadow: 0 6px 20px rgba(66, 43, 35, 0.15);
-}
-
-.sidebar-title {
-    padding-top: 15px;
-    padding-left: 15px;
-    font-size: 18px;
-    color: #422b23;
-}
-
 .sidebar-card-right {
     margin: 15px;
     padding: 15px;
@@ -78,22 +64,6 @@ body {
 .resident-item:hover {
     cursor: pointer;
     background-color: #B97072;
-}
-
-.btn-primary {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background: #dba1a2;
-    color: #422b23;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.2s;
-}
-
-.btn-primary:hover {
-    background: #B97072;
 }
 
 #visit-resident-profile {
