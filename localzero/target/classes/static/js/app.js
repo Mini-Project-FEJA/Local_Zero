@@ -29,6 +29,7 @@ export async function loadLeftSidebar() {
             navigate("visit-resident-profile", "profile.html");
             navigate("visit-all-initiatives", "initiatives.html");
             navigate("visit-frontpage", "frontpage.html");
+            navigate("visit-posts", "posts.html");
             loadUsername();
             loadLogoutButton();
 

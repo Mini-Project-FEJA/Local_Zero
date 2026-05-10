@@ -10,7 +10,7 @@
 
 .layout {
     display: grid;
-    grid-template-columns: 320px 1fr 320px;
+    grid-template-columns: 1fr 4fr 1fr;
     min-height: 100vh;
     gap: 20px;
     padding: 20px;
