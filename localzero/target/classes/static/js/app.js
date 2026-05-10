@@ -14,8 +14,6 @@ navigate("resident-button", "login.html");
 navigate("go-to-register-button", "register.html");
 navigate("login-button", "frontpage.html");
 navigate("register-button", "frontpage.html");
-navigate("my-profile", "profile.html");
-navigate("inbox-button", "inbox.html");
 
 //Laddar left-sidebar html på alla de HTML filer som har app.js script och
 //element "left-sidebar"
@@ -35,12 +33,27 @@ export async function loadLeftSidebar() {
             loadLogoutButton();
 
         } catch (error) {
-            console.error("Couldn't load sidebar", error);
+            console.error("Couldn't load left sidebar", error);
         }
     }
 }
 
-loadLeftSidebar();
+export async function loadRightSidebar() {
+    const sidebar = document.getElementById("right-sidebar");
+    if (sidebar) {
+        try {
+            const response = await fetch('right-sidebar.html');
+            const html = await response.text();
+
+            sidebar.innerHTML = html;
+
+            navigate("my-profile", "profile.html");
+            navigate("inbox-button", "inbox.html");
+        } catch (error) {
+            console.error("Couldn't load right sidebar ", error);
+        }
+    }
+}
 
 function loadUsername() {
 

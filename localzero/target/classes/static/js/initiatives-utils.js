@@ -63,7 +63,7 @@ export const InitiativeProxy = {
 
     async getInitiatives(endpoint,forceRefresh = false) {
         if (this.cache[endpoint] && !forceRefresh) {
-            return this.cache[endpoint];
+            console.log("Hämtar initiatives från cache");
         }
 
         const response = await fetch(`http://localhost:8081/initiatives/${endpoint}`);
@@ -293,7 +293,6 @@ async function joinInitiative(initiativeID) {
     } catch (error) {
         console.error(error)
     }
-
 }
 
 

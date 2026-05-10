@@ -3,7 +3,7 @@
     --dark-pink: #dba1a2;
     --white: #f7f3ed;
     --dark-brown: #422b23;
-    --weird-grey: #9EA490;
+    --dull-grey: #9EA490;
 }
 
 #initiatives-header {
@@ -125,8 +125,6 @@ body {
     padding: 20px;
 }
 
-
-
 .feed {
     display: flex;
     flex-direction: column;
@@ -229,3 +227,10 @@ body {
     justify-self: end;
     cursor: pointer;
 }
+
+#new-initiative-button {
+    width: 140px;
+    height: 80px;
+    font-size: 16px;
+}
+

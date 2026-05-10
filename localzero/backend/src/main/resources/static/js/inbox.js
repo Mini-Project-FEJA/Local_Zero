@@ -1,3 +1,12 @@
+import {loadLeftSidebar, loadRightSidebar} from "./app.js";
+
+async function initialize() {
+    await loadLeftSidebar();
+    await loadRightSidebar();
+}
+
+initialize();
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const userRaw = localStorage.getItem("user");

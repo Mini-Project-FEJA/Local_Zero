@@ -3,12 +3,13 @@ import {loadPopupWindowButtons,
     setupCreateButton,
     fetchMyInitiatives,
     fetchAllInitiatives} from "./initiatives-utils.js";
-import {loadLeftSidebar} from "./app.js";
+import {loadLeftSidebar, loadRightSidebar} from "./app.js";
 
 async function initialize() {
+    await loadLeftSidebar();
+    await loadRightSidebar();
     await fetchMyInitiatives();
     await fetchAllInitiatives();
-    await loadLeftSidebar();
     await loadTogglePopupButtons();
     await loadPopupWindowButtons();
     setupCreateButton();

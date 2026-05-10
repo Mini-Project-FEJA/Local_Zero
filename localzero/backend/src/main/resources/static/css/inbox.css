@@ -3,7 +3,7 @@
     --light-pink: #efd8d6;
     --white: #f7f3ed;
     --dark-brown: #422b23;
-    --weird-grey: #9EA490;
+    --dull-grey: #9EA490;
 }
 
 body {
@@ -50,7 +50,8 @@ h1 {
     padding: 40px;
 }
 
-.btn-primary {
+#new-message {
+    width: 200px;
     padding: 12px;
     margin: 20px;
     border: none;
@@ -62,10 +63,11 @@ h1 {
     transition: 0.2s;
 }
 
-.btn-primary:hover {
+#new-message:hover {
     cursor: pointer;
     background-color: #7C846A;
 }
+
 .popup {
     display: none;
     position: fixed;
