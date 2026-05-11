@@ -1,4 +1,7 @@
 //All JavaScript som berör flera olika sidor
+//Funktioner som har "export" tag kan importeras till andra javascript filer
+//Genom export/import samlar vi all javascript som behövs av flera olika sidor,
+//sedan importerar man bara de funktioner som behövs på en viss sida.
 
 export function navigate(id, url) {
     const el = document.getElementById(id);
@@ -16,7 +19,7 @@ navigate("login-button", "frontpage.html");
 navigate("register-button", "frontpage.html");
 
 //Laddar left-sidebar html på alla de HTML filer som har app.js script och
-//element "left-sidebar"
+//element id "left-sidebar"
 export async function loadLeftSidebar() {
     const sidebar = document.getElementById("left-sidebar");
     if (sidebar) {

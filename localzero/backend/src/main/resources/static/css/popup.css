@@ -1,0 +1,82 @@
+.popup-box {
+    width: 500px;
+    height: 600px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5px;
+    background-color: var(--light-pink);
+    padding: 30px;
+    font-size: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 14px;
+    border: #9EA490 solid 7px;
+    box-shadow: 0 6px 20px rgba(66, 43, 35, 0.12);
+}
+
+#popup-box-top {
+    background: linear-gradient(135deg, #DBA1A2, #efd8d6);
+    grid-column: 1 / span 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.popup-box > *, input, select {
+    font-size: 25px;
+}
+
+.popup-box h2 {
+    color: white;
+    font-size: 40px;
+    margin: 0;
+}
+
+.popup-box label {
+    font-size: 25px;
+    font-weight: bold;
+    grid-column: 1;
+}
+
+.initiative-label  {
+    grid-column: 1;
+}
+
+.initiative-input {
+    border: #7C846A solid 2px;
+    grid-column: 2;
+}
+
+#initiative-description-field {
+    grid-column: span 2;
+    width: 500px;
+}
+
+.visible {
+    display: none;
+}
+
+#create-initiative-button {
+    width: 120px;
+    height: 50px;
+    font-size: 20px;
+    justify-self: center;
+    grid-column: span 2;
+}
+
+#cancel-initiative-popup {
+    background-color: #ffffff;
+    color: #7f756f;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 25px;
+    width: 40px;
+    height: 40px;
+    justify-self: end;
+    cursor: pointer;
+}

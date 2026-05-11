@@ -35,6 +35,11 @@ body {
     flex-direction: column;
 }
 
+#new-initiative-button {
+    width: 180px;
+    height: 60px;
+    font-size: 14px;
+}
 
 #resident-list {
     display: flex;

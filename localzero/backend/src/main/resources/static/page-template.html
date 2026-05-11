@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template</title>
+    <!-- Layout.css innehåller CSS för sidebars och main feed -->
+    <link rel="stylesheet" href="css/layout.css">
+    <!-- Lägg till din egen css som är specifik för din sida här -->
+</head>
+<body>
+    <!--För att göra en ny sida som ska ha sidebars och main feed
+        så behövs en div med class layout
+        en aside med id "left-sidebar"
+        en main med class "feed"
+        en aside med id "right-sidebar"  -->
+    <div class="layout">
+        <!-- Denna representerar vänster sidebar -->
+        <aside class="sidebar left" id="left-sidebar"></aside>
+
+        <!-- Detta är mitten av sidan, "main feed" -->
+        <main class="feed">
+            <div class="feed-header">
+                <!-- Här inne lägger du till den specifika HTML du ska ha på din sida -->
+                <h1>Template</h1>
+                <button>Exempel knapp</button>
+            </div>
+        </main>
+
+        <!-- Denna representerar höger sidebar -->
+        <aside class="sidebar right" id="right-sidebar"></aside>
+    </div>
+
+
+    <!-- Lägg till din egen javascript fil som är specifik för din sida här.
+     Det ska bara finnas ett script per HTML. Ifall du behöver funktioner från ett annat
+     script så gör det genom att importera/Exportera funktioner i JS
+      Ifall du har ett script med importerade funktioner är det viktigt att skriva
+      type="module" -->
+    <script src="/js/exempel.js" type="module"></script>
+</body>
+</html>

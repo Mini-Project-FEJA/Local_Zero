@@ -8,6 +8,11 @@
     --light-blue: #98e9fe;
 }
 
+/* All CSS som berör sidebars och main feed samlas här för att förhindra
+duplicerad kod. Om du ändrar här ändras det på alla sidor med sidebars och main feed.
+Ifall du bara vill ändra på din egen sida så gör en egen CSS fil för det.
+ */
+
 .layout {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr;
