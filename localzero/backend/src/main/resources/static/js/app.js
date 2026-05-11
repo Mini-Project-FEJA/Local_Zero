@@ -24,7 +24,7 @@ export async function loadLeftSidebar() {
     const sidebar = document.getElementById("left-sidebar");
     if (sidebar) {
         try {
-            const response = await fetch('left-sidebar.html');
+            const response = await fetch('components/left-sidebar.html');
             const html = await response.text();
 
             sidebar.innerHTML = html;
@@ -46,7 +46,7 @@ export async function loadRightSidebar() {
     const sidebar = document.getElementById("right-sidebar");
     if (sidebar) {
         try {
-            const response = await fetch('right-sidebar.html');
+            const response = await fetch('components/right-sidebar.html');
             const html = await response.text();
 
             sidebar.innerHTML = html;
@@ -55,6 +55,21 @@ export async function loadRightSidebar() {
             navigate("inbox-button", "inbox.html");
         } catch (error) {
             console.error("Couldn't load right sidebar ", error);
+        }
+    }
+}
+
+export async function loadInitiativePopup() {
+    const popup = document.getElementById("initiative-popup");
+    if (popup) {
+        try {
+            const response = await fetch('components/initiative-popup.html');
+            const html = await response.text();
+
+            popup.innerHTML = html;
+
+        } catch (error) {
+            console.error("Couldn't load popup ", error);
         }
     }
 }

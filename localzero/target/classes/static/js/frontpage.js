@@ -1,10 +1,12 @@
 //All JavaScript för frontpage
-import {loadLeftSidebar, loadRightSidebar} from "./app.js";
+import {loadLeftSidebar, loadRightSidebar, loadInitiativePopup} from "./app.js";
 import {loadPopupWindowButtons, loadTogglePopupButtons, setupCreateButton} from "./initiatives-utils.js";
 
 async function initialize() {
     await loadLeftSidebar();
     await loadRightSidebar();
+    await loadInitiativePopup();
+
     await loadPopupWindowButtons();
     await loadTogglePopupButtons();
     setupCreateButton();
