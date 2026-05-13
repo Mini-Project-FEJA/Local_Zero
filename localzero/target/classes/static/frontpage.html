@@ -4,22 +4,15 @@
     <meta charset="UTF-8">
     <title>Local Zero</title>
     <link rel="stylesheet" href="css/frontpage.css">
+    <link rel="stylesheet" href="css/popup.css">
+    <link rel="stylesheet" href="css/layout.css">
     <link rel="icon" type="image/png" href="/favicon.ico">
 </head>
-
 <body>
 
 <div class="layout">
 
-    <aside class="sidebar left">
-        <h2 class="sidebar-title">Your Community</h2>
-
-        <div class="sidebar-card">
-            <button class="btn-primary" id="visit-resident-profile">
-                View resident profile
-            </button>
-        </div>
-    </aside>
+    <aside class="sidebar left" id="left-sidebar"></aside>
 
     <main class="feed">
 
@@ -39,62 +32,16 @@
         </div>
 
         <div>
-            <button class="btn-primary toggle-initiative-button" id="new-initiative-button">New initiative</button>
+            <button class="btn-primary new-initiative-button" id="new-initiative-button">New initiative</button>
         </div>
 
-        <div class="popup-box visible" id="initiative-popup">
-            <div id="popup-box-top">
-                <h2>Create new initiative</h2>
-                <button class="cancel-popup, toggle-initiative-button" id="cancel-initiative-popup">X</button>
-            </div>
-
-            <label for="initiative-title">Title:</label>
-            <input class="initiative-input" id="initiative-title" type="text" placeholder="E.g disco i Trelleborg">
-
-            <label for="initiative-start">Event begins:</label>
-            <input class="initiative-input" id="initiative-start" type="datetime-local">
-
-            <label for="initiative-end">Event ends:</label>
-            <input class="initiative-input" id="initiative-end" type="datetime-local">
-
-            <label for="initiative-category">Category:</label>
-            <select class="initiative-input" id="initiative-category">
-                <option value="MUSIC">Music</option>
-                <option value="SPORT">Sport</option>
-            </select>
-
-            <label for="initiative-location">Location:</label>
-            <input class="initiative-input" id="initiative-location" type="text">
-
-            <label for="initiative-visibility">Visibility</label>
-            <select class="initiative-input initiative-visibility" id="initiative-visibility" required>
-                <option value="PUBLIC">Public</option>
-                <option value="NEIGHBOURHOOD_ONLY">Neighbourhood</option>
-                <option value="PRIVATE">Private</option>
-            </select>
-
-            <label for="initiative-description-field">Description:</label>
-            <br/>
-            <textarea rows="5" class="initiative-input" id="initiative-description-field" placeholder="Describe your event"></textarea>
-            <br/>
-            <button class="btn-primary" id="create-initiative-button">Create</button>
-
-
-        </div>
-
+        <div class="popup-box visible" id="initiative-popup"></div>
     </main>
 
-    <aside class="sidebar right">
-        <h2 class="sidebar-title">Notifications</h2>
-
-        <div class="sidebar-card">
-            <p>No new notifications</p>
-        </div>
-    </aside>
+    <aside class="sidebar right" id="right-sidebar"></aside>
 
 </div>
 
-<script src="/js/frontpage.js"></script>
-<script src="/js/app.js"></script>
+<script src="/js/frontpage.js" type="module"></script>
 </body>
 </html>

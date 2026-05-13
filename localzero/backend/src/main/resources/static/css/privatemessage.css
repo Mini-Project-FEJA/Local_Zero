@@ -7,139 +7,121 @@
 
 body {
     background-color: #f7f3ed;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
 }
 
-.chat-container {
-    width: 400px;
-    height: 600px;
-    background: #C2C6B9;
-    display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
-}
-
-.chat-header {
-    background: #949e8d;
-    padding: 15px;
-    text-align: center;
-    font-size: 18px;
-    border-radius: 8px 8px 0 0;
-}
-
-.chat-box {
-    flex: 1;
-    padding: 15px;
+.conversation-box {
+    background-color: #efd8d6;
+    border: none;
+    border-radius: 16px;
+    padding: 20px;
+    width: 100vh;
+    gap: 15px;
     overflow-y: auto;
+    scroll-behavior: smooth;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
-.message {
-    padding: 10px;
-    max-width: 70%;
-    border-radius: 8px;
-}
-
-.received {
-    background: #e5e7eb;
-    align-self: flex-start;
-}
-
-.sent {
-    background: #949e8d;
-    align-self: flex-end;
-}
-
-.chat-input-area {
+.sent-message-box {
     display: flex;
-    padding: 10px;
-    gap: 10px;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 15px;
 }
 
-.chat-input-area input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
+.received-message-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 15px;
 }
 
-.chat-input-area button {
-    background: #949e8d;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.chat-input-area button:hover {
-    background: #7C846A;
-}
-
-
-.layout {
-    display: grid;
-    grid-template-columns: 320px 1fr 320px;
-    min-height: 100vh;
-    gap: 20px;
-    padding: 20px;
-}
-
-.sidebar {
-    background: #efd8d6;
-    border-radius: 14px;
-    padding: 20px;
-    box-shadow: 0 6px 20px rgba(66, 43, 35, 0.15);
-}
-
-.sidebar-title {
-    margin-top: 0;
+.sent-message {
     font-size: 18px;
-    color: #422b23;
-}
-
-.sidebar-card {
-    margin-top: 15px;
-    padding: 15px;
-    background: #f7f3ed;
-    border-radius: 10px;
-    color: #422b23;
-}
-
-.btn-primary {
-    width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    background: #dba1a2;
-    color: #422b23;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.2s;
-}
-
-.btn-primary:hover {
-    background: #B97072;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 16px;
-    background: #DBA1A2;
     color: #422B23;
+    background-color: #acb4a4;
     border-radius: 8px;
-    text-decoration: none;
-    margin-top: 10px;
-    transition-duration: 0.2s;
+    border: none;
+    width: 200px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
-.btn:hover {
-    background: #B97072;
+.received-message {
+    font-size: 18px;
+    color: #422B23;
+    background-color: #DBA1A2;
+    border-radius: 8px;
+    border: none;
+    width: 200px;
+    padding: 15px;
+}
+
+.time {
+    font-size: 14px;
+    color: #7f756f;
+    margin: 5px;
+}
+
+.sender {
+    color: #422B23;
+    font-size: 14px;
+    background-color: #7C846A;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.receiver {
+    color: #422B23;
+    font-size: 14px;
+    background-color: #B97072;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.input {
+    width: 550px;
+    background-color: white;
+    border: none;
+    margin: 10px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.input-and-send {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin: 15px;
+    background: linear-gradient(to top, #efd8d6, transparent);
+}
+
+#save-message  {
+    margin: 10px;
+    color: #422B23;
+    background-color: #e0b1b1;
+    border-radius: 8px;
+    border: none;
+    padding: 10px;
+}
+
+#save-message:hover {
+    background-color: #DBA1A2;
     cursor: pointer;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
+}
+
+#messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    scrollbar-width: none; /* Firefox */
 }

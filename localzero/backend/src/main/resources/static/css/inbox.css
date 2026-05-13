@@ -1,0 +1,124 @@
+
+:root {
+    --light-pink: #efd8d6;
+    --white: #f7f3ed;
+    --dark-brown: #422b23;
+    --dull-grey: #9EA490;
+}
+
+body {
+    background-color: #f7f3ed;
+}
+
+h1 {
+    font-size: 45px;
+    color: #422B23;
+    margin-left: 40px;
+}
+
+#messages-list {
+    background-color: #C2C6B9;
+    border-radius: 16px;
+    border: none;
+    color: #422B23;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message-item {
+    background: #9EA490;
+    padding: 12px;
+    margin: 12px;
+    border-radius: 8px;
+    border: none;
+    transition-duration: 0.2s;
+    text-align: left;
+}
+
+.message-item:hover {
+    background: #7C846A;
+    cursor: pointer;
+}
+
+.message-box {
+    background-color: #efd8d6;
+    border-radius: 8px;
+    border: none;
+    color: #422B23;
+    margin: 40px;
+    padding: 40px;
+}
+
+#new-message {
+    width: 200px;
+    padding: 12px;
+    margin: 20px;
+    border: none;
+    border-radius: 10px;
+    background: #9EA490;
+    color: #422b23;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+#new-message:hover {
+    cursor: pointer;
+    background-color: #7C846A;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 60%;
+    max-width: 600px;
+    background-color: #efd8d6;
+    color: #422B23;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.cancel-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#send-message {
+    color: #422B23;
+    background-color: #DBA1A2;
+    border-radius: 4px;
+    border: none;
+    width: 80px;
+    height: 30px;
+    margin: 10px;
+}
+
+#send-message:hover {
+    cursor: pointer;
+    background-color: #B97072;
+}
+
+#message-form {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+}

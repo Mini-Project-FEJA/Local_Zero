@@ -9,6 +9,10 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -43,4 +47,12 @@ public class SustainabilityInitiative {
 
     @Enumerated(EnumType.STRING)
     private Visibility visibility;
+
+    @ManyToMany
+    @JoinTable(
+        name = "initiative_participants",
+        joinColumns = @JoinColumn(name = "initiative_id"),
+        inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private Set<User> participants = new HashSet<>();
 }

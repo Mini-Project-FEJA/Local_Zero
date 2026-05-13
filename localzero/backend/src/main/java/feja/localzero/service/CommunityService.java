@@ -41,4 +41,11 @@ public class CommunityService {
         }
         communityRepository.deleteById(id);
     }
+
+    public Long getCommunityIdByName(String name) {
+        Community community = communityRepository.findByName(name)
+                .orElseThrow(() -> new RuntimeException("Community not found"));
+
+        return community.getId();
+    }
 }

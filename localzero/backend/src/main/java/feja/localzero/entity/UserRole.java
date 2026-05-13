@@ -1,9 +1,18 @@
 package feja.localzero.entity;
 
-public enum UserRole {
+import lombok.Getter;
 
-    ADMIN,
-    COMMUNITY_MANAGER,
-    RESIDENT,
-    USER
+@Getter
+public enum UserRole {
+    ADMIN("Admin"),
+    COMMUNITY_MANAGER("Community manager"),
+    RESIDENT("Resident"),
+    USER("User");
+
+    private final String label;
+
+    UserRole(String label) {
+        this.label = label;
+    }
+
 }

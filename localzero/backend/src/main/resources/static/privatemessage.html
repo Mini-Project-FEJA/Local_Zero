@@ -5,39 +5,17 @@
   <link rel="stylesheet" href="css/privatemessage.css">
   <title>Title</title>
 </head>
-<body class="message-body">
-
-<div class="layout">
-<aside class="sidebar left">
-    <h2 class="sidebar-title">Friends</h2>
-
-    <div class="sidebar-card">
-        <button class="btn-primary" id="visit-resident-profile">
-            View resident profile
-        </button>
+<body>
+<div class="conversation-box">
+    <div id="messages"></div>
+    <div class="input-and-send">
+        <label>
+            <input class="input" id="messageInput" placeholder="Skriv ditt meddelande här...">
+        </label>
+        <button id="save-message">Send</button>
     </div>
-    <a class="btn" href="frontpage.html">Back to feed</a>
-
-</aside>
-
-<div class="chat-container">
-
-    <div class="chat-header">
-        <h2>Messages</h2>
-    </div>
-
-    <div class="chat-box">
-        <div class="message received">Message</div>
-        <div class="message sent">Message</div>
-        <div class="message received">Message</div>
-    </div>
-
-    <div class="chat-input-area">
-        <input type="text" placeholder="Write a message...">
-        <button>Send</button>
-    </div>
-
 </div>
-</div>
+<script src="js/privatemessage.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
