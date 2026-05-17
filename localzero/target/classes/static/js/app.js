@@ -33,6 +33,7 @@ export async function loadLeftSidebar() {
             navigate("visit-all-initiatives", "initiatives.html");
             navigate("visit-frontpage", "frontpage.html");
             navigate("visit-posts", "posts.html");
+            navigate("visit-sustainability-tracker", "sustainability-tracker.html");
             loadUsername();
             loadLogoutButton();
 
