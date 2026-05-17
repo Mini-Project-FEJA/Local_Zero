@@ -1,3 +1,4 @@
+const BASE_URL = "http://localhost:8081";
 
 export async function fetchAllInitiatives() {
     try {
@@ -62,22 +63,45 @@ export const InitiativeProxy = {
     cache: {},
 
     async getInitiatives(endpoint,forceRefresh = false) {
+        const storageKey = `initiatives_${endpoint}`;
+
         if (this.cache[endpoint] && !forceRefresh) {
             console.log("Hämtar initiatives från cache");
+            return this.cache[endpoint];
         }
 
-        const response = await fetch(`http://localhost:8081/initiatives/${endpoint}`);
+        if(!forceRefresh) {
+            const sessionData = sessionStorage.getItem(storageKey);
+
+            if (sessionData) {
+                console.log("Hämtar initiatives från session storage");
+                const parsedData = JSON.parse(sessionData);
+
+                this.cache[endpoint] = parsedData;
+                return parsedData;
+            }
+        }
+
+        const response = await fetch(`${BASE_URL}/initiatives/${endpoint}`);
+
         if (!response.ok) {
             throw new Error("Kunde inte hämta initiative");
         }
         const data = await response.json();
         this.cache[endpoint] = data;
+        sessionStorage.setItem(storageKey, JSON.stringify(data));
         return data;
     },
 
     invalidateCache() {
         console.log("Clear cache");
         this.cache = {};
+
+        Object.keys(sessionStorage).forEach(key => {
+            if (key.startsWith("initiatives_")) {
+                sessionStorage.removeItem(key);
+            }
+        })
     }
 }
 
@@ -196,7 +220,7 @@ function toggleInitiativePopup() {
 }
 
 async function fetchEnum(enumType) {
-    const response = await fetch(`http://localhost:8081/enums/${enumType}`);
+    const response = await fetch(`${BASE_URL}/enums/${enumType}`);
     const data = await response.json();
     return data;
 }
@@ -206,13 +230,13 @@ const EnumProxy = {
 
     async getEnums(enumType) {
         if (this.cache[enumType]) {
-            console.log("Hämtar från cache")
+            //console.log("Hämtar enums från cache")
             return this.cache[enumType];
         }
         try {
             const enumData = await fetchEnum(enumType);
             this.cache[enumType] = enumData;
-            console.log("Hämtar från server")
+            //console.log("Hämtar enums från server")
 
             return enumData;
         } catch (error) {
@@ -252,7 +276,7 @@ export function setupCreateButton() {
             }
 
             try {
-                const response = await fetch("http://localhost:8081/initiatives/create-initiative", {
+                const response = await fetch(`${BASE_URL}/initiatives/create-initiative`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -284,7 +308,7 @@ async function joinInitiative(initiativeID) {
     const userID = user.id;
 
     try {
-        const response = await fetch(`http://localhost:8081/initiatives/${initiativeID}/join/${userID}`, {
+        const response = await fetch(`${BASE_URL}/initiatives/${initiativeID}/join/${userID}`, {
             method: 'POST'
         })
         if (response.ok) {

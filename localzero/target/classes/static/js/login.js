@@ -1,5 +1,7 @@
 //All JavaScript som rör Login + Register page
 
+const BASE_URL = "http://localhost:8081";
+
 const adminBtn = document.getElementById("admin-button");
 if (adminBtn) {
     adminBtn.addEventListener("click", function() {
@@ -46,7 +48,7 @@ if (loginBtn) {
         }
 
         try {
-            const response = await fetch("http://localhost:8081/users/login", {
+            const response = await fetch(`${BASE_URL}/users/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

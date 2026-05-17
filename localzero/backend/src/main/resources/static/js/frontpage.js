@@ -2,6 +2,8 @@
 import {loadLeftSidebar, loadRightSidebar, loadInitiativePopup} from "./app.js";
 import {loadPopupWindowButtons, loadTogglePopupButtons, setupCreateButton} from "./initiatives-utils.js";
 
+const BASE_URL = "http://localhost:8081";
+
 async function initialize() {
     await loadLeftSidebar();
     await loadRightSidebar();
@@ -48,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Community ID:", communityId);
 
     // 3. Fetch users i community
-    fetch(`http://localhost:8081/users/my-community/${communityId}`)
+    fetch(`${BASE_URL}/users/my-community/${communityId}`)
         .then(async (res) => {
 
             if (!res.ok) {
