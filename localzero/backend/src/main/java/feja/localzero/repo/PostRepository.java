@@ -15,4 +15,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     //sorterad lista av posts
     List<Post> findByUserOrderByCreatedAtDesc(User user);
 
+
+
 }

@@ -40,6 +40,7 @@ public class Post {
     @Setter(AccessLevel.NONE)
     private LocalDateTime createdAt;
 
+
     //Körs när man skapar en ny row och sätter timestamp automatiskt till nuvarande tid
     //när man skapar ett inlägg
     @PrePersist
@@ -47,4 +48,8 @@ public class Post {
         this.createdAt = LocalDateTime.now();
     }
 
+
+    public void setImageUrl(String imageUrl) {
+        this.imageURL = imageUrl;
+    }
 }

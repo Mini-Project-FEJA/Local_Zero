@@ -32,7 +32,62 @@
 
         <div class="feed-header">
             <h1>For You</h1>
-            <p>Initiatives from your community</p>
+            <p>Initiatives and posts from your community</p>
+
+        </div>
+        <button class="btn-primary toggle-initiative-button" id="new-initiative-button">Create a new initiative</button>
+
+        <div class="tab-panel" id="tab-posts">
+
+            <div id="posts-list" style="margin-bottom: 20px;"></div>
+
+            <form class="post-form" id="post-form">
+
+        <textarea
+                id="post-input"
+                placeholder="Upload a post...">
+        </textarea>
+
+                <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/*"
+                        hidden>
+
+                <label for="imageInput" class="btn-edit-image">
+                    Upload a picture
+                </label>
+
+                <button
+                        class="post-upload-btn"
+                        id="post-upload-btn"
+                        type="submit">
+
+                    Upload post
+
+                </button>
+
+            </form>
+        </div>
+
+
+        <div class="post-card">
+            <h3>Post </h3>
+            <p>Post description</p>
+
+
+            <div class="comment" id="comment">
+                <div id="comment-list" style="margin-bottom: 20px;"></div>
+                <div class="comment-form">
+                    <textarea id="comment-input" placeholder="Write a comment..."></textarea>
+                    <button class="comment-upload-btn" id="comment-upload-btn">Upload comment</button>
+
+                </div>
+            </div>
+            <div id='heart' class='button'></div>
+
+
+
         </div>
 
         <div class="post-card">
@@ -45,9 +100,7 @@
             <p>Initiative description</p>
         </div>
 
-        <div>
-            <button class="btn-primary toggle-initiative-button" id="new-initiative-button">New initiative</button>
-        </div>
+
 
         <div class="popup-box visible" id="initiative-popup">
             <div id="popup-box-top">
@@ -88,6 +141,11 @@
 
 
         </div>
+
+
+
+
+
 
     </main>
 

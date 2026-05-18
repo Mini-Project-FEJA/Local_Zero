@@ -132,13 +132,22 @@ body {
     box-shadow: 0 6px 20px rgba(66, 43, 35, 0.12);
     color: #422b23;
     border-left: 6px solid #9EA490;
+    position: relative;
+
+    /*
+     display: flex;
+    flex-direction: column;
+     */
+
+
 }
 
 #new-initiative-button {
-    width: 200px;
-    height: 80px;
+    height: 40px;
     font-size: 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
+
 
 .popup-box {
     width: 500px;
@@ -178,6 +187,53 @@ body {
     font-size: 40px;
     margin: 0;
 
+}
+
+.post-item {
+    padding: 16px;
+    background: #f8faf8;
+    border-radius: 12px;
+    border: 1px solid #e5ede5;
+    margin-bottom: 12px;
+}
+.post-date { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px; }
+.post-text { font-size: 14px; color: #333; line-height: 1.6; }
+.post-form textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 14px;
+    border: 1.5px solid #ddd;
+    border-radius: 12px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 20px;
+    color: #333;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+.post-form textarea:focus { border-color: hotpink; }
+.post-upload-btn, .btn-edit-image {
+    margin-top: 10px;
+    padding: 10px 24px;
+    background: pink;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.post-upload-btn:hover { background: #245f37; }
+
+.btn-edit-image:hover { background: #245f37; }
+
+
+#imageInput, #post-upload-btn{
+    width: 200px;
+    font-size: 17px;
 }
 
 .popup-box label {
@@ -236,3 +292,59 @@ body {
     display: flex;
     gap: 10px;
 }
+
+
+.button{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+    transition: background 0.5s ease;
+}
+.button:hover{
+
+}
+.active#heart:before,.active#heart:after{
+    background: red !important;
+}
+#heart {
+    width: 100px;
+    height: 90px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    transition: transform 0.2s ease;
+}
+
+#heart.active{
+    transform: scale(1.1);
+}
+
+
+#heart:before,
+#heart:after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 18px;
+    background: dimgrey;
+    border-radius: 50px 50px 0 0;
+    transition: background 0.5s ease;
+}
+
+
+#heart:before {
+    left: 12px;
+    top: 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+#heart:after {
+    left: 0;
+    top: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+

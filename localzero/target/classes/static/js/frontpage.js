@@ -7,6 +7,13 @@ document.querySelectorAll(".toggle-initiative-button").forEach(button => {
     })
 });
 
+const heart = document.getElementById("heart");
+
+heart.addEventListener("click", () => {
+    console.log("click ")
+    heart.classList.toggle("active");
+});
+
 function toggleInitiativePopup() {
     const popupBox = document.getElementById("initiative-popup");
     popupBox.classList.toggle("visible");
@@ -143,5 +150,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(err => {
             console.error("Error loading users:", err);
         });
+
+
+
 
 });
