@@ -33,6 +33,8 @@ public class Post {
 
     private int amountOfLikes;
 
+    private String imageURL;
+
     //Updatable så att man inte kan ändra när en post är uppladdad
     @Column(nullable = false, updatable = false)
     @Setter(AccessLevel.NONE)
