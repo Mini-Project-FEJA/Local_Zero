@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8081";
+const BASE_URL = "https://aqua-animating-molecule.ngrok-free.dev";
 
 export async function fetchAllInitiatives() {
     try {
@@ -70,17 +70,17 @@ export const InitiativeProxy = {
             return this.cache[endpoint];
         }
 
-        if(!forceRefresh) {
-            const sessionData = sessionStorage.getItem(storageKey);
-
-            if (sessionData) {
-                console.log("Hämtar initiatives från session storage");
-                const parsedData = JSON.parse(sessionData);
-
-                this.cache[endpoint] = parsedData;
-                return parsedData;
-            }
-        }
+        // if(!forceRefresh) {
+        //     const sessionData = sessionStorage.getItem(storageKey);
+        //
+        //     if (sessionData) {
+        //         console.log("Hämtar initiatives från session storage");
+        //         const parsedData = JSON.parse(sessionData);
+        //
+        //         this.cache[endpoint] = parsedData;
+        //         return parsedData;
+        //     }
+        // }
 
         const response = await fetch(`${BASE_URL}/initiatives/${endpoint}`);
 

@@ -1,6 +1,6 @@
 //All JavaScript som rör Login + Register page
 
-const BASE_URL = "http://localhost:8081";
+const BASE_URL = "https://aqua-animating-molecule.ngrok-free.dev";
 
 const adminBtn = document.getElementById("admin-button");
 if (adminBtn) {

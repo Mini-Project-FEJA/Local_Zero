@@ -2,7 +2,7 @@
 import {loadLeftSidebar, loadRightSidebar, loadInitiativePopup} from "./app.js";
 import {loadPopupWindowButtons, loadTogglePopupButtons, setupCreateButton} from "./initiatives-utils.js";
 
-const BASE_URL = "http://localhost:8081";
+const BASE_URL = "https://aqua-animating-molecule.ngrok-free.dev";
 
 async function initialize() {
     await loadLeftSidebar();
