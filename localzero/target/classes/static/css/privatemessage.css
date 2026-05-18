@@ -125,3 +125,22 @@ body {
     padding: 10px;
     scrollbar-width: none; /* Firefox */
 }
+
+#back {
+    background-color: #acb4a4;
+    color: #422B23;
+    border: none;
+    border-radius: 12px;
+    height: 40px;
+    width: 170px;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    transition-duration: 0.3s;
+    padding: 12px 18px;
+}
+
+#back:hover {
+    cursor: pointer;
+    background-color: #7C846A;
+}
