@@ -266,6 +266,7 @@ export function setupCreateButton() {
                     await fetchMyInitiatives();
                     await fetchAllInitiatives();
                 } else {
+                    alert("Please fill in all required fields");
                     console.log("Couldn't create initiative: " + response);
                 }
 

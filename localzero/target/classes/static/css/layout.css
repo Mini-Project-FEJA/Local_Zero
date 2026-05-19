@@ -31,10 +31,59 @@ Ifall du bara vill ändra på din egen sida så gör en egen CSS fil för det.
 
 .feed-header {
     background: #efd8d6;
-    padding: 20px;
+    padding: 10px;
     border-radius: 14px;
     box-shadow: 0 6px 20px rgba(66, 43, 35, 0.12);
     color: #422b23;
+}
+
+.feed-card {
+    border-radius: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: snow;
+}
+
+.feed-card-header {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0;
+    border-top-right-radius: 14px;
+    border-top-left-radius: 14px;
+}
+
+.feed-card-sub-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+}
+
+.feed-post-card-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #a8d9fe;
+    align-content: space-between;
+}
+
+.feed-initiative-card-header {
+    background-color: #cafbca;
+}
+
+.initiative-time {
+    text-align: right;
+}
+
+.initiative-title {
+    margin: 0 0 3px 0;
+}
+
+.poster-name {
+
+}
+
+.post-timestamp {
+    text-align: right;
 }
 
 /* LEFT SIDEBAR */

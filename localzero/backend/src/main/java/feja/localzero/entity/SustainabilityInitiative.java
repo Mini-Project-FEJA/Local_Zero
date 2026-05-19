@@ -55,4 +55,8 @@ public class SustainabilityInitiative {
         inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<User> participants = new HashSet<>();
+
+    //Transient innebär att det inte blir en kolumn i DB, men fältet skickas med i JSON
+    @Transient
+    private final String type = "INITIATIVE";
 }

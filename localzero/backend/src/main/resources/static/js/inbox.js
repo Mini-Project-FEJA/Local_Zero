@@ -75,3 +75,72 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(err => console.error("Error loading inbox:", err));
 });
+document.addEventListener("DOMContentLoaded", () => {
+
+    const userRaw = localStorage.getItem("user");
+
+    if (!userRaw) {
+        console.error("No user in localStorage");
+        return;
+    }
+
+    const user = JSON.parse(userRaw);
+
+    const communityId = user.community.id;
+
+    fetch(`http://localhost:8081/users/my-community/${communityId}`)
+        .then(async (res) => {
+
+            if (!res.ok) {
+                const text = await res.text();
+                throw new Error(`HTTP ${res.status} - ${text}`);
+            }
+
+            return res.json();
+        })
+
+        .then(users => {
+
+            console.log("Users from API:", users);
+
+            const menu = document.getElementById("resident-menu");
+            const btn = document.getElementById("new-message-btn");
+
+            btn.addEventListener("click", () => {
+
+                if (menu.style.display === "block") {
+                    menu.style.display = "none";
+                } else {
+                    menu.style.display = "block";
+                }
+            });
+
+            users.forEach(u => {
+
+                if (u.username === user.username) {
+                    return;
+                }
+
+                const resident = document.createElement("div");
+
+                resident.classList.add("resident-item");
+
+                resident.textContent = u.username;
+
+                resident.addEventListener("click", () => {
+
+                    window.location.href =
+                        `privatemessage.html?user_id=${u.id}`;
+                });
+
+                menu.appendChild(resident);
+            });
+
+        })
+
+        .catch(err => {
+            console.error("Error loading users:", err);
+        });
+    console.log(user);
+
+});

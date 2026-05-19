@@ -1,7 +1,9 @@
 package feja.localzero.controller;
 
+import feja.localzero.entity.InitiativeCategory;
 import feja.localzero.entity.SustainabilityInitiative;
 import feja.localzero.service.InitiativeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +14,11 @@ import java.util.List;
 public class InitiativeController {
 
     private final InitiativeService service;
+    private final InitiativeService initiativeService;
 
-    public InitiativeController(InitiativeService service) {
+    public InitiativeController(InitiativeService service, InitiativeService initiativeService) {
         this.service = service;
+        this.initiativeService = initiativeService;
     }
 
     @PostMapping("/create-initiative")
@@ -46,5 +50,23 @@ public class InitiativeController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(("Couldn't join initiative"));
         }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchInitiatives(
+            @RequestParam(required = false) Long userId,
+            @RequestParam(required = false) InitiativeCategory category,
+            @RequestParam(defaultValue = "newest") String sort,
+            @RequestParam(required = false) Integer limit) {
+        try {
+            List<SustainabilityInitiative> initiatives = initiativeService
+                    .search(userId, category, sort, limit);
+            return ResponseEntity.ok(initiatives);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to search initiatives in InitiativesController");
+        }
+
     }
 }

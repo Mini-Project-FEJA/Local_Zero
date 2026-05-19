@@ -1,6 +1,7 @@
 //All JavaScript för frontpage
 import {loadLeftSidebar, loadRightSidebar, loadInitiativePopup} from "./app.js";
 import {loadPopupWindowButtons, loadTogglePopupButtons, setupCreateButton} from "./initiatives-utils.js";
+import { loadPostAndInitiativeFeed } from "./feed.js";
 
 async function initialize() {
     await loadLeftSidebar();
@@ -10,9 +11,10 @@ async function initialize() {
     await loadPopupWindowButtons();
     await loadTogglePopupButtons();
     setupCreateButton();
+    await loadPostAndInitiativeFeed();
 }
-initialize();
 
+initialize();
 
 document.addEventListener("DOMContentLoaded", () => {
 

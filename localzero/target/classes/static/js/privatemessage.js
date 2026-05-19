@@ -1,8 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const sender_id = urlParams.get("sender_id");
-
     const userRaw = localStorage.getItem("user");
 
     if (!userRaw) {
@@ -11,109 +8,138 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const user = JSON.parse(userRaw);
-    const user_id = user?.id;
+    const currentUserId = user?.id;
 
-    if (!user_id) {
+    if (!currentUserId) {
         console.error("Missing user.id:", user);
         return;
     }
 
-    fetch(`http://localhost:8081/private-messages/${user_id}/${sender_id}`)
-        .then(async res => {
+    const urlParams = new URLSearchParams(window.location.search);
 
+    const otherUserId =
+        urlParams.get("sender_id") ||
+        urlParams.get("user_id");
+
+    if (!otherUserId) {
+        console.error("Missing other user id in URL");
+        return;
+    }
+
+    fetch(`http://localhost:8081/private-messages/${currentUserId}/${otherUserId}`)
+        .then(async res => {
             if (!res.ok) {
                 const text = await res.text();
                 throw new Error(text);
             }
-
             return res.json();
         })
         .then(messages => {
+
             messages.sort((a, b) => new Date(a.sentAt) - new Date(b.sentAt));
 
             const allMessages = document.getElementById("messages");
 
+            if (!allMessages) {
+                console.error("#messages not found");
+                return;
+            }
+
             allMessages.innerHTML = "";
 
             messages.forEach(msg => {
-                const formatted = msg.sentAt.split(".")[0].replace("T", " ");
+
+                const formatted = msg.sentAt
+                    .split(".")[0]
+                    .replace("T", " ");
+
+                const isSentMessage = msg.sender?.id === currentUserId;
 
                 const messageElement = document.createElement("div");
-                const isSentMessage = msg.sender.id === user_id;
 
                 if (isSentMessage) {
                     messageElement.innerHTML = `
                         <div class="sent-message-box">
-                                <div class="sent-message">
-                                    <div class="sender">${msg.sender?.username ?? msg.sender_id ?? "Unknown"}</div> <br>
-                                    ${msg.content} <br>
-                                </div>
+                            <div class="sent-message">
+                                <div class="sender">
+                                    ${msg.sender?.username ?? "Unknown"}
+                                </div><br>
+                                ${msg.content}<br>
+                            </div>
                             <div class="time">${formatted}</div>
                         </div>
                     `;
                 } else {
                     messageElement.innerHTML = `
                         <div class="received-message-box">
-                                <div class="received-message">
-                                    <div class="receiver">${msg.sender?.username ?? msg.sender_id ?? "Unknown"}</div> <br>
-                                    ${msg.content} <br>
-                                </div>
+                            <div class="received-message">
+                                <div class="receiver">
+                                    ${msg.sender?.username ?? "Unknown"}
+                                </div><br>
+                                ${msg.content}<br>
+                            </div>
                             <div class="time">${formatted}</div>
                         </div>
                     `;
                 }
 
                 allMessages.appendChild(messageElement);
-                requestAnimationFrame(() => {
+            });
+
+            requestAnimationFrame(() => {
+                const allMessages = document.getElementById("messages");
+                if (allMessages) {
                     allMessages.scrollTop = allMessages.scrollHeight;
-                });
+                }
             });
         })
-        .catch(err => console.error("Error loading inbox:", err));
-});
+        .catch(err => console.error("Error loading messages:", err));
 
-document.getElementById('save-message').addEventListener('click', function() {
-    const messageContent = document.getElementById('messageInput').value;
+    const sendBtn = document.getElementById("save-message");
 
-    const userRaw = localStorage.getItem("user");
-
-    if (!userRaw) {
-        console.error("No user in localStorage");
+    if (!sendBtn) {
+        console.error("#save-message not found");
         return;
     }
 
-    const user = JSON.parse(userRaw);
-    const receiverId = user?.id;
+    sendBtn.addEventListener("click", () => {
 
-    if (!receiverId) {
-        console.error("Missing user.id:", user);
-        return;
-    }
+        const input = document.getElementById("messageInput");
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const senderId = urlParams.get("sender_id");
+        if (!input) {
+            console.error("#messageInput not found");
+            return;
+        }
 
-    // Skicka meddelandet som en vanlig textsträng
-    fetch(`http://localhost:8081/private-messages/send/${receiverId}/${senderId}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+        const messageContent = input.value.trim();
+
+        if (!messageContent) return;
+
+        const payload = {
             content: messageContent
+        };
+
+        fetch(`http://localhost:8081/private-messages/send/${currentUserId}/${otherUserId}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
         })
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Failed to send message");
-            }
-            return response.text(); // du returnerar inget JSON från backend
-        })
-        .then(() => {
-            console.log('Meddelandet skickades');
-            location.reload();
-        })
-        .catch((error) => {
-            console.error('Fel vid skickande av meddelande:', error);
-        });
+            .then(async res => {
+                if (!res.ok) {
+                    const text = await res.text();
+                    throw new Error(text);
+                }
+                return res.text();
+            })
+            .then(() => {
+                input.value = "";
+
+                location.reload();
+            })
+            .catch(err => {
+                console.error("Error sending message:", err);
+            });
+    });
 });

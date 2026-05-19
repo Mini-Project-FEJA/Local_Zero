@@ -1,5 +1,6 @@
 package feja.localzero.service;
 
+import feja.localzero.builder.InitiativeBuilder;
 import feja.localzero.entity.InitiativeCategory;
 import feja.localzero.entity.SustainabilityInitiative;
 import feja.localzero.entity.User;
@@ -7,6 +8,10 @@ import feja.localzero.entity.Visibility;
 import feja.localzero.repo.SustainabilityInitiativeRepository;
 import feja.localzero.repo.UserRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -75,6 +80,30 @@ public class InitiativeService {
         initiative.getParticipants().add(user);
 
         repo.save(initiative);
+    }
+
+    public List<SustainabilityInitiative> search(Long userId, InitiativeCategory category, String sortOrder, Integer limit) {
+
+        Specification<SustainabilityInitiative> specification = new InitiativeBuilder()
+                .perUser(userId)
+                .withCategory(category)
+                .build();
+
+        //Sorterar default på "startTime" i fallande ordning
+        Sort sort = Sort.by(Sort.Direction.DESC, "startTime");
+        if ("oldest".equalsIgnoreCase(sortOrder)) {
+            sort = Sort.by(Sort.Direction.ASC, "startTime");
+        }
+
+        int maxResults;
+        if (limit != null) {
+            maxResults = limit;
+        } else {
+            maxResults = 20;
+        }
+        Pageable pageable = PageRequest.of(0, maxResults, sort);
+
+        return repo.findAll(specification, pageable).getContent();
     }
 
 
