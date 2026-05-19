@@ -114,8 +114,8 @@ function createFeedInitiativeCard(initiative, containerId) {
         </div>
     `
 
-    card.querySelector(".initiative-title").textContent = `${initiative.title}`;
-    card.querySelector(".initiative-host").textContent = `Initiative hosted by: ${initiative.user.username}`;
+    card.querySelector(".initiative-title").textContent = `Initiative: ${initiative.title}`;
+    card.querySelector(".initiative-host").textContent = `Host: ${initiative.user.username}`;
     card.querySelector(".initiative-location").textContent = `Location: ${initiative.location}`;
     card.querySelector(".initiative-start-time").textContent = `Starts at: ${initiative.startTime || "Not specified"}`;
     card.querySelector(".initiative-end-time").textContent = `Ends at: ${initiative.endTime || "Not specified"}`;
