@@ -10,6 +10,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -31,7 +32,17 @@ public class PrivateMessageController {
 
     @GetMapping("/my-inbox/{user_id}")
     public List<PrivateMessage> getInbox(@PathVariable Long user_id) {
-        return privateMessageService.getInbox(user_id);
+        List<PrivateMessage> messages = new ArrayList<>();
+
+        messages.addAll(privateMessageService.getInbox(user_id));
+        messages.addAll(privateMessageService.getSentMessages(user_id));
+
+        return messages;
+    }
+
+    @GetMapping("/sent-messages/{user_id}")
+    public List<PrivateMessage> getSentMessages(@PathVariable Long user_id) {
+        return privateMessageService.getSentMessages(user_id);
     }
 
     @GetMapping("/private-messages/{receiverId}/{senderId}")

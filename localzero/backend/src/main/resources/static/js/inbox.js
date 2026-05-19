@@ -48,28 +48,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
             list.innerHTML = "";
 
+            messages.sort((a, b) => new Date(b.sentAt) - new Date(a.sentAt));
+
+            const latestConversations = new Map();
+
             messages.forEach(msg => {
-                const raw = msg.sentAt;
+
+                if (!msg.sender) return;
+
+                const otherUser =
+                    msg.sender.id === userId
+                        ? msg.receiver
+                        : msg.sender;
+
+                if (!otherUser) return;
+
+                const conversationId = otherUser.id;
+
+                if (!latestConversations.has(conversationId)) {
+                    latestConversations.set(conversationId, msg);
+                }
+            });
+
+            latestConversations.forEach(msg => {
+
+                const raw = msg.sentAt ?? "";
                 const formatted = raw.replace("T", " ");
 
+                const otherUser =
+                    msg.sender.id === userId
+                        ? msg.receiver
+                        : msg.sender;
+
+                if (!otherUser) return;
+
                 const btn = document.createElement("button");
+
+                let sender = otherUser.username;
+
+                if (msg.sender.id === user.id) {
+                    sender = "You";
+                }
+
                 btn.classList.add("message-item");
 
-
                 btn.innerHTML = `
-                    <strong>From:</strong> ${msg.sender?.username ?? msg.sender.id ?? "Unknown"} <br>
-                    <strong>Message:</strong> ${msg.content} <br>
-                    <strong>${formatted}</strong>
-                `;
+            <strong>Chat with ${otherUser.username ?? "Unknown"}</strong><br>
+            <strong>${sender}:</strong> ${msg.content ?? ""}<br>
+            <strong>${formatted}</strong>
+        `;
+
+                btn.addEventListener("click", () => {
+                    window.location.href =
+                        `privatemessage.html?sender_id=${otherUser.id}`;
+                });
 
                 list.appendChild(btn);
-
-                btn.addEventListener("click", function () {
-                    const sender_id = msg.sender.id;
-                    console.log("Sender ID:", sender_id);
-
-                    window.location.href = `privatemessage.html?sender_id=${sender_id}`;
-                })
             });
 
         })

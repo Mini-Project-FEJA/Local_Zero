@@ -64,12 +64,13 @@ Ifall du bara vill ändra på din egen sida så gör en egen CSS fil för det.
 .feed-post-card-header {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: #a8d9fe;
+    background-color: #d3c18c;
     align-content: space-between;
 }
 
 .feed-initiative-card-header {
-    background-color: #cafbca;
+    background-color: #8a9fb2;
+    padding: 20px;
 }
 
 .initiative-time {
