@@ -40,14 +40,16 @@ Ifall du bara vill ändra på din egen sida så gör en egen CSS fil för det.
 .feed-card {
     border-radius: 14px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding: 10px;
-    background-color: snow;
+    background-color: var(--light-pink);
+    box-shadow: 0 2px 15px var(--medium-pink);
 }
 
 .feed-card-header {
     padding-left: 10px;
     padding-right: 10px;
+    padding-top: 5px;
     margin: 0;
     border-top-right-radius: 14px;
     border-top-left-radius: 14px;
@@ -78,12 +80,15 @@ Ifall du bara vill ändra på din egen sida så gör en egen CSS fil för det.
     margin: 0 0 3px 0;
 }
 
-.poster-name {
-
-}
-
 .post-timestamp {
     text-align: right;
+}
+
+.card-content {
+    background-color: snow;
+    padding: 10px;
+    border-bottom-right-radius: 14px;
+    border-bottom-left-radius: 14px;
 }
 
 /* LEFT SIDEBAR */

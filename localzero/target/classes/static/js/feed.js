@@ -38,7 +38,7 @@ export async function loadPostAndInitiativeFeed() {
 
     const [posts, initiatives] = await Promise.all([
         getLatestPosts(null, 10),
-        getNewestInitiatives()
+        getNewestInitiatives(null, null)
     ]);
 
     const combinedFeed = [...posts, ...initiatives];
@@ -54,14 +54,14 @@ export async function loadPostAndInitiativeFeed() {
 
     for (const item of combinedFeed) {
         if (item.type === "POST") {
-            createFeedPostCard(item, "frontpage-feed-container");
+            await createFeedPostCard(item, "frontpage-feed-container");
         } else if (item.type === "INITIATIVE") {
-            createFeedInitiativeCard(item, "frontpage-feed-container");
+            await createFeedInitiativeCard(item, "frontpage-feed-container");
         }
     }
 }
 
-function createFeedPostCard(post, containerId) {
+export function createFeedPostCard(post, containerId) {
 
     const container = document.getElementById(containerId);
 
