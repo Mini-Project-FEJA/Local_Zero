@@ -5,13 +5,16 @@ import feja.localzero.entity.SustainabilityInitiative;
 import feja.localzero.entity.User;
 import feja.localzero.entity.Visibility;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 //filtrera initiativ med hjälp av attributer som user, category etc
 @Repository
-public interface SustainabilityInitiativeRepository extends JpaRepository<SustainabilityInitiative, Long> {
+public interface SustainabilityInitiativeRepository extends
+        JpaRepository<SustainabilityInitiative, Long>,
+        JpaSpecificationExecutor<SustainabilityInitiative> {
 
     List<SustainabilityInitiative> findByUser(User user);
 

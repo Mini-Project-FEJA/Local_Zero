@@ -3,7 +3,7 @@
     --light-pink: #efd8d6;
     --white: #f7f3ed;
     --dark-brown: #422b23;
-    --weird-grey: #9EA490;
+    --dull-grey: #9EA490;
 }
 
 body {
@@ -50,7 +50,8 @@ h1 {
     padding: 40px;
 }
 
-.btn-primary {
+#new-message {
+    width: 200px;
     padding: 12px;
     margin: 20px;
     border: none;
@@ -62,10 +63,11 @@ h1 {
     transition: 0.2s;
 }
 
-.btn-primary:hover {
+#new-message:hover {
     cursor: pointer;
     background-color: #7C846A;
 }
+
 .popup {
     display: none;
     position: fixed;
@@ -119,4 +121,50 @@ h1 {
     display: flex;
     flex-direction: column;
     border-radius: 4px;
+}
+.new-message-container {
+    position: relative;
+    width: 250px;
+}
+
+#new-message-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #acb4a4;
+    color: #422B23;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 12px;
+}
+
+#new-message-btn:hover {
+    background: #7C846A;
+}
+
+.resident-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    overflow: hidden;
+    z-index: 100;
+}
+
+.resident-item {
+    padding: 14px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: 0.2s;
+}
+
+.resident-item:hover {
+    background: #f5f7fa;
 }

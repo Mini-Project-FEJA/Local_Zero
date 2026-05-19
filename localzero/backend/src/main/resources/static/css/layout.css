@@ -1,0 +1,181 @@
+:root {
+    --light-pink: #efd8d6;
+    --medium-pink: #dba1a2;
+    --dark-pink: #e18686;
+    --white: #f7f3ed;
+    --dark-brown: #422b23;
+    --dull-grey: #9EA490;
+    --light-blue: #98e9fe;
+}
+
+/* All CSS som berör sidebars och main feed samlas här för att förhindra
+duplicerad kod. Om du ändrar här ändras det på alla sidor med sidebars och main feed.
+Ifall du bara vill ändra på din egen sida så gör en egen CSS fil för det.
+ */
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    min-height: 100vh;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* MAIN FEED */
+
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.feed-header {
+    background: #efd8d6;
+    padding: 10px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(66, 43, 35, 0.12);
+    color: #422b23;
+}
+
+.feed-card {
+    border-radius: 14px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: var(--light-pink);
+    box-shadow: 0 2px 15px var(--medium-pink);
+}
+
+.feed-card-header {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    margin: 0;
+    border-top-right-radius: 14px;
+    border-top-left-radius: 14px;
+}
+
+.feed-card-sub-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+}
+
+.feed-post-card-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: #a8d9fe;
+    align-content: space-between;
+}
+
+.feed-initiative-card-header {
+    background-color: #cafbca;
+}
+
+.initiative-time {
+    text-align: right;
+}
+
+.initiative-title {
+    margin: 0 0 3px 0;
+}
+
+.post-timestamp {
+    text-align: right;
+}
+
+.card-content {
+    background-color: snow;
+    padding: 10px;
+    border-bottom-right-radius: 14px;
+    border-bottom-left-radius: 14px;
+}
+
+/* LEFT SIDEBAR */
+
+.sidebar {
+    background: #efd8d6;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(66, 43, 35, 0.15);
+}
+
+.sidebar-title {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #422b23;
+}
+
+#sidebar-account-info {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f7f3ed;
+    border-radius: 10px;
+    color: #422b23;
+}
+
+.sidebar-card {
+    margin: 15px;
+    padding: 15px;
+    background: #f7f3ed;
+    border-radius: 10px;
+    color: #422b23;
+}
+
+.sidebar-card-left {
+    margin: 15px;
+    padding: 15px;
+    background: #f7f3ed;
+    border-radius: 10px;
+    color: #422b23;
+}
+
+/* RIGHT SIDEBAR */
+
+.notifications-box {
+    background-color: #9EA490;
+    border-radius: 16px;
+    border: none;
+    margin-top: 15px;
+    padding: 5px;
+}
+
+.inbox-profile-box {
+    display: flex;
+    gap: 10px;
+}
+
+.sidebar-card-right {
+    margin: 15px;
+    padding: 15px;
+    background: #f7f3ed;
+    border-radius: 10px;
+    color: #422b23;
+    width: 150px;
+}
+
+/* BUTTONS */
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #dba1a2;
+    color: #422b23;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: Verdana, serif;
+    transition-duration: 0.4s;
+}
+
+.btn-primary:hover {
+    background: #e18686;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
+}
+
+#account-logout-button {
+    background-color: var(--dull-grey);
+}
+
+

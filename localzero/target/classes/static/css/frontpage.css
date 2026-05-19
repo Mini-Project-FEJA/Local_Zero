@@ -1,51 +1,15 @@
 :root {
     --light-pink: #efd8d6;
+    --medium-pink: #dba1a2;
+    --dark-pink: #e18686;
     --white: #f7f3ed;
     --dark-brown: #422b23;
-    --weird-grey: #9EA490;
+    --dull-grey: #9EA490;
+    --light-blue: #98e9fe;
 }
 
 body {
     background-color: #f7f3ed;
-}
-
-.layout {
-    display: grid;
-    grid-template-columns: 320px 1fr 320px;
-    min-height: 100vh;
-    gap: 20px;
-    padding: 20px;
-}
-
-.sidebar {
-    background: #efd8d6;
-    border-radius: 14px;
-    padding: 20px;
-    box-shadow: 0 6px 20px rgba(66, 43, 35, 0.15);
-}
-
-.sidebar-title {
-    padding-top: 15px;
-    padding-left: 15px;
-    font-size: 18px;
-    color: #422b23;
-}
-
-.sidebar-card-right {
-    margin: 15px;
-    padding: 15px;
-    background: #f7f3ed;
-    border-radius: 10px;
-    color: #422b23;
-    width: 150px;
-}
-
-.sidebar-card-left {
-    margin: 15px;
-    padding: 15px;
-    background: #f7f3ed;
-    border-radius: 10px;
-    color: #422b23;
 }
 
 .residents-card {
@@ -57,7 +21,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
 
 #resident-list {
     display: flex;
@@ -132,62 +95,8 @@ body {
     box-shadow: 0 6px 20px rgba(66, 43, 35, 0.12);
     color: #422b23;
     border-left: 6px solid #9EA490;
-    position: relative;
-
-    /*
-     display: flex;
-    flex-direction: column;
-     */
-
-
 }
 
-#new-initiative-button {
-    height: 40px;
-    font-size: 20px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-
-.popup-box {
-    width: 500px;
-    height: 600px;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 5px;
-    background-color: var(--light-pink);
-    padding: 30px;
-    font-size: 25px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 14px;
-    border: #9EA490 solid 7px;
-    box-shadow: 0 6px 20px rgba(66, 43, 35, 0.12);
-}
-
-#popup-box-top {
-    background: linear-gradient(135deg, #DBA1A2, #efd8d6);
-    grid-column: 1 / span 2;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 15px;
-}
-
-.popup-box > *, input, select {
-    font-size: 25px;
-}
-
-.popup-box h2 {
-    color: white;
-    font-size: 40px;
-    margin: 0;
-
-}
 
 .post-item {
     padding: 16px;
@@ -234,117 +143,5 @@ body {
 #imageInput, #post-upload-btn{
     width: 200px;
     font-size: 17px;
-}
-
-.popup-box label {
-    font-size: 25px;
-    font-weight: bold;
-    grid-column: 1;
-}
-
-.initiative-label  {
-    grid-column: 1;
-}
-
-.initiative-input {
-    border: #7C846A solid 2px;
-    grid-column: 2;
-}
-
-#initiative-description-field {
-    grid-column: span 2;
-    width: 500px;
-}
-
-.visible {
-    display: none;
-}
-
-#create-initiative-button {
-    width: 120px;
-    height: 50px;
-    font-size: 20px;
-    justify-self: center;
-    grid-column: span 2;
-}
-
-#cancel-initiative-popup {
-    background-color: #ffffff;
-    color: #7f756f;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 25px;
-    width: 40px;
-    height: 40px;
-    justify-self: end;
-    cursor: pointer;
-}
-
-.notifications-box {
-    background-color: #9EA490;
-    border-radius: 16px;
-    border: none;
-    margin-top: 15px;
-    padding: 5px;
-}
-
-.inbox-profile-box {
-    display: flex;
-    gap: 10px;
-}
-
-
-.button{
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
-    background: none;
-    cursor: pointer;
-    transition: background 0.5s ease;
-}
-.button:hover{
-
-}
-.active#heart:before,.active#heart:after{
-    background: red !important;
-}
-#heart {
-    width: 100px;
-    height: 90px;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    transition: transform 0.2s ease;
-}
-
-#heart.active{
-    transform: scale(1.1);
-}
-
-
-#heart:before,
-#heart:after {
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 18px;
-    background: dimgrey;
-    border-radius: 50px 50px 0 0;
-    transition: background 0.5s ease;
-}
-
-
-#heart:before {
-    left: 12px;
-    top: 0;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
-}
-
-#heart:after {
-    left: 0;
-    top: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
 }
 

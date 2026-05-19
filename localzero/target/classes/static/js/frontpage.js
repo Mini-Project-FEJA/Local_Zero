@@ -1,71 +1,20 @@
 //All JavaScript för frontpage
+import {loadLeftSidebar, loadRightSidebar, loadInitiativePopup} from "./app.js";
+import {loadPopupWindowButtons, loadTogglePopupButtons, setupCreateButton} from "./initiatives-utils.js";
+import { loadPostAndInitiativeFeed } from "./feed.js";
 
+async function initialize() {
+    await loadLeftSidebar();
+    await loadRightSidebar();
+    await loadInitiativePopup();
 
-document.querySelectorAll(".toggle-initiative-button").forEach(button => {
-    button.addEventListener("click", function () {
-        toggleInitiativePopup();
-    })
-});
-
-const heart = document.getElementById("heart");
-
-heart.addEventListener("click", () => {
-    console.log("click ")
-    heart.classList.toggle("active");
-});
-
-function toggleInitiativePopup() {
-    const popupBox = document.getElementById("initiative-popup");
-    popupBox.classList.toggle("visible");
+    await loadPopupWindowButtons();
+    await loadTogglePopupButtons();
+    setupCreateButton();
+    await loadPostAndInitiativeFeed();
 }
 
-const createInitiativeButton = document.getElementById("create-initiative-button");
-
-if (createInitiativeButton) {
-    createInitiativeButton.addEventListener("click", async function(e) {
-
-        const currentUser = localStorage.getItem("user");
-        const user = JSON.parse(currentUser);
-
-        const titleInput = document.getElementById("initiative-title");
-        const startInput = document.getElementById("initiative-start");
-        const endInput = document.getElementById("initiative-end");
-        const categoryInput = document.getElementById("initiative-category");
-        const locationInput = document.getElementById("initiative-location");
-        const visibilityInput = document.getElementById("initiative-visibility");
-        const descriptionInput = document.getElementById("initiative-description-field");
-
-        const initiative = {
-            user: user,
-            title: titleInput.value,
-            startTime: startInput.value,
-            endTime: endInput.value,
-            category: categoryInput.value,
-            location: locationInput.value,
-            visibility: visibilityInput.value,
-            description: descriptionInput.value,
-        }
-
-        try {
-            const response = await fetch("http://localhost:8081/initiatives/create-initiative", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(initiative)
-            });
-
-            if (response.ok) {
-                toggleInitiativePopup();
-            } else {
-                console.log("Couldn't create initiative: " + response);
-            }
-
-        } catch (err) {
-            console.error(err);
-        }
-    })
-}
+initialize();
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -150,8 +99,5 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(err => {
             console.error("Error loading users:", err);
         });
-
-
-
 
 });

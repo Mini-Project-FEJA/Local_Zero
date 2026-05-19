@@ -1,3 +1,12 @@
+import {createFeedPostCard, getLatestPosts} from "./feed.js";
+import {loadLeftSidebar, loadRightSidebar} from "./app.js";
+
+
+async function initialize() {
+    await loadLeftSidebar();
+    await loadRightSidebar();
+   await loadMyPosts();
+}
 const form = document.getElementById("post-form");
 
 form.addEventListener("submit", async (e) => {
@@ -23,6 +32,7 @@ form.addEventListener("submit", async (e) => {
         formData.append("image", imageFile);
     }
 
+initialize();
     const response = await fetch("/posts", {
         method: "POST",
         body: formData
@@ -33,13 +43,23 @@ form.addEventListener("submit", async (e) => {
     if (response.ok) {
         alert("Post uploaded!");
 
+async function loadMyPosts() {
+    const container = document.getElementById("frontpage-feed-container");
         const postsList = document.getElementById("posts-list");
 
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userId = user.id;
         postsList.innerHTML += `
     <div class="post-card">
 
+    const myPosts = await getLatestPosts(userId, 20);
         <p>${post.description ?? ""}</p>
 
+    for (const post of myPosts) {
+        await createFeedPostCard(post, "frontpage-feed-container");
+        console.log("creating post card");
+    }
+}
         ${
             post.imageUrl
                 ? `<img src="${post.imageUrl}" width="300">`

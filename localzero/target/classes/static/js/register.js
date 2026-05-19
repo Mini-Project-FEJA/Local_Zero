@@ -21,6 +21,7 @@ if (registerBtn) {
 
       if (response.ok) {
         console.log("User registered!");
+        localStorage.setItem("user", JSON.stringify(user));
         window.location.href = "frontpage.html";
 
       } else {

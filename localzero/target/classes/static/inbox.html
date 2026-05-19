@@ -3,17 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Inbox</title>
-    <link rel="stylesheet" href="css/inbox.css">
 
+    <link rel="stylesheet" href="css/inbox.css">
+    <link rel="stylesheet" href="css/layout.css">
 </head>
+
 <body>
-<h1>Inbox</h1>
-<div class="message-box">
-    <button class="btn-primary" id="new-message">New message</button>
-    <div id="messages-list"></div>
+
+<div class="layout">
+
+    <aside class="sidebar left" id="left-sidebar"></aside>
+
+    <main class="feed">
+
+        <div class="feed-header">
+            <h1>Inbox</h1>
+        </div>
+
+        <div class="message-box">
+
+            <div class="new-message-container">
+
+                <button id="new-message-btn">
+                    + New Message
+                </button>
+
+                <div class="resident-menu" id="resident-menu">
+
+                </div>
+
+            </div>
+
+            <div id="messages-list"></div>
+
+        </div>
+
+    </main>
+
+    <aside class="sidebar right" id="right-sidebar"></aside>
+
 </div>
 
-<script src="/js/inbox.js"></script>
-<script src="/js/app.js"></script>
+<script src="/js/inbox.js" type="module"></script>
+
 </body>
 </html>

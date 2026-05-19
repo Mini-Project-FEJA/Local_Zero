@@ -40,13 +40,16 @@ public class Post {
     @Setter(AccessLevel.NONE)
     private LocalDateTime createdAt;
 
-
     //Körs när man skapar en ny row och sätter timestamp automatiskt till nuvarande tid
     //när man skapar ett inlägg
     @PrePersist
     protected void setTimestamp() {
         this.createdAt = LocalDateTime.now();
     }
+
+    //Transient innebär att det inte blir en kolumn i DB, men fältet skickas med i JSON
+    @Transient
+    private final String type = "POST";
 
 
     public void setImageUrl(String imageUrl) {
