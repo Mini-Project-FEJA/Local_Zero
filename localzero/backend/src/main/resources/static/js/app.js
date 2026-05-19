@@ -17,6 +17,7 @@ navigate("resident-button", "login.html");
 navigate("go-to-register-button", "register.html");
 navigate("login-button", "frontpage.html");
 navigate("register-button", "frontpage.html");
+navigate("back", "inbox.html");
 
 //Laddar left-sidebar html på alla de HTML filer som har app.js script och
 //element id "left-sidebar"
@@ -33,6 +34,7 @@ export async function loadLeftSidebar() {
             navigate("visit-all-initiatives", "initiatives.html");
             navigate("visit-frontpage", "frontpage.html");
             navigate("visit-posts", "posts.html");
+            navigate("visit-sustainability-tracker", "sustainability-tracker.html");
             loadUsername();
             loadLogoutButton();
 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/eco-tracker.css">
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar left" id="left-sidebar"></aside>
+
+    <main class="feed">
+        <div class="feed-header">
+            <h1>Sustainability Tracker</h1>
+        </div>
+        <div class="tracker-buttons">
+            <button onclick="logAction('BIKED_TO_WORK')">
+                🚴 Biked To Work
+            </button>
+
+            <button onclick="logAction('RECYCLING')">
+                ♻️ Recycling
+            </button>
+
+            <button onclick="logAction('USED_REUSABLE_BOTTLE')">
+                🍼 Reusable Bottle
+            </button>
+        </div>
+        <div class="dashboard">
+
+            <div class="carbon-card">
+                <h2>🌍 Total Carbon Saved</h2>
+                <p id="total-carbon">0 kg CO₂</p>
+            </div>
+
+            <div class="progress-container">
+
+                <h3>🚴 Weekly Bike Challenge</h3>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"
+                         id="bike-progress-fill"></div>
+                </div>
+
+                <p id="bike-progress-text"></p>
+
+            </div>
+
+            <div class="progress-container">
+
+                <h3>♻️ Recycling Challenge</h3>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"
+                         id="recycling-progress-fill"></div>
+                </div>
+
+                <p id="recycling-progress-text"></p>
+
+            </div>
+
+            <div class="progress-container">
+
+                <h3>🍼 Reusable Bottle Challenge</h3>
+
+                <div class="progress-bar">
+                    <div class="progress-fill"
+                         id="bottle-progress-fill"></div>
+                </div>
+
+                <p id="bottle-progress-text"></p>
+
+            </div>
+
+            <div class="achievement-container">
+
+                <h2>🏆 Achievements</h2>
+
+                <ul id="achievement-list"></ul>
+
+            </div>
+
+        </div>
+    </main>
+
+    <aside class="sidebar right" id="right-sidebar"></aside>
+</div>
+
+<script src="/js/sustainability-tracker.js" type="module"></script>
+</body>
+</html>
