@@ -14,9 +14,11 @@ import org.springframework.stereotype.Service;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -38,57 +40,29 @@ public class PostService {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-    public Post createPost(Long userId,
-                           String description,
-                           MultipartFile image) throws IOException {
+    @Transactional
+    public Post createPost(Long userId, String description, MultipartFile image) throws IOException {
 
-        User user = getUser(userId);
+        // 2. Hämta den faktiska användaren från databasen via ID
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Användaren med ID " + userId + " hittades inte!"));
 
-        boolean hasDescription =
-                description != null && !description.trim().isEmpty();
-
-        boolean hasImage =
-                image != null && !image.isEmpty();
-
-        if (!hasDescription && !hasImage) {
-            throw new RuntimeException(
-                    "Post must contain text or image");
-        }
-
-        String imageUrl = null;
-
-        if (hasImage) {
-
-            String fileName =
-                    UUID.randomUUID() + "_" +
-                            image.getOriginalFilename();
-
-            Path uploadPath = Paths.get("uploads");
-
-            Files.createDirectories(uploadPath);
-
-            Path filePath = uploadPath.resolve(fileName);
-
-            Files.copy(image.getInputStream(), filePath);
-
-            imageUrl = "/uploads/" + fileName;
-        }
-
+        // 3. Skapa det nya inlägget och sätt värdena
         Post post = new Post();
-
-        post.setUser(user);
-
-        post.setDescription(hasDescription
-                ? description
-                : null);
-
-        post.setImageUrl(imageUrl);
-
+        post.setUser(user); // Måste sättas eftersom nullable = false
+        post.setDescription(description);
         post.setAmountOfLikes(0);
 
+        // Här hanterar du bilden (just nu sätter vi bara ett exempel-namn)
+        if (image != null && !image.isEmpty()) {
+            // Här sparar du vanligtvis filen och får en URL tillbaka
+            String imageUrl = "/uploads/" + image.getOriginalFilename();
+            post.setImageurl(imageUrl);
+        }
+
+        // 4. VIKTIGT: Spara inlägget i databasen via ditt Repository
         return repo.save(post);
     }
-
 
 
     public List<Post> getPostsByUser(Long userId) {

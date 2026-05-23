@@ -19,9 +19,6 @@ import java.io.IOException;
 @RequestMapping("/posts")
 public class PostController {
 
-
-
-
     private final PostService postService;
 
     public PostController(PostService postService) {
@@ -33,12 +30,7 @@ public class PostController {
             @RequestParam(required = false) Long userId,
             @RequestParam(defaultValue = "newest") String sort,
             @RequestParam(required = false) Integer limit) {
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Post createPost(
-            @RequestParam Long userId,
 
-            @RequestParam(required = false)
-            String description,
 
         try {
             List<Post> posts = postService.search(userId, sort, limit);
@@ -47,14 +39,27 @@ public class PostController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Failed to search posts in PostController");
         }
+
+    }
+
+
+    @PostMapping("/create")
+    public Post createPost(
+            @RequestParam Long userId,
+
+            @RequestParam(required = false)
+            String description,
+
+
             @RequestParam(required = false)
             MultipartFile image
-    ) throws IOException {
 
-        return postService.createPost(
-                userId,
-                description,
-                image
-        );
-    }
+        ) throws IOException {
+
+            return postService.createPost(
+                    userId,
+                    description,
+                    image
+            );
+        }
 }

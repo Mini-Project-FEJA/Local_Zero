@@ -1,5 +1,6 @@
 package feja.localzero.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -33,11 +34,14 @@ public class Post {
 
     private int amountOfLikes;
 
-    private String imageURL;
+    @Column(name = "imageurl")
+    private String imageurl;
 
     //Updatable så att man inte kan ändra när en post är uppladdad
     @Column(nullable = false, updatable = false)
     @Setter(AccessLevel.NONE)
+
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime createdAt;
 
     //Körs när man skapar en ny row och sätter timestamp automatiskt till nuvarande tid
@@ -52,7 +56,4 @@ public class Post {
     private final String type = "POST";
 
 
-    public void setImageUrl(String imageUrl) {
-        this.imageURL = imageUrl;
-    }
 }
