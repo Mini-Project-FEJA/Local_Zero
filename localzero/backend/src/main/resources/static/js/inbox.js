@@ -72,9 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             latestConversations.forEach(msg => {
 
-                const raw = msg.sentAt ?? "";
-                const formatted = raw.replace("T", " ");
-
                 const otherUser =
                     msg.sender.id === userId
                         ? msg.receiver
@@ -95,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 btn.innerHTML = `
             <strong>Chat with ${otherUser.username ?? "Unknown"}</strong><br>
             <strong>${sender}:</strong> ${msg.content ?? ""}<br>
-            <strong>${formatted}</strong>
+            <strong>${formatDate(msg.sentAt)}</strong>
         `;
 
                 btn.addEventListener("click", () => {
@@ -178,3 +175,15 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(user);
 
 });
+
+function formatDate(isoString) {
+    const date = new Date(isoString);
+
+    return (
+        date.getFullYear() + "-" +
+        String(date.getMonth() + 1).padStart(2, "0") + "-" +
+        String(date.getDate()).padStart(2, "0") + " " +
+        String(date.getHours()).padStart(2, "0") + ":" +
+        String(date.getMinutes()).padStart(2, "0")
+    );
+}

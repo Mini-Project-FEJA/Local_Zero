@@ -1,7 +1,7 @@
 package feja.localzero.command;
 
-import feja.localzero.entity.PrivateMessage;
+import feja.localzero.dto.CreatePostRequest;
 
-public interface Command {
-    void execute(String message, Long senderId, Long receiverId);
+public interface Command<T> {
+    void execute(T request);
 }

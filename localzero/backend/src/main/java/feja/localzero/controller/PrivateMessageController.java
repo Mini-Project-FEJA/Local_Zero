@@ -24,9 +24,9 @@ public class PrivateMessageController {
         this.privateMessageService = privateMessageService;
     }
 
-    @PostMapping("/private-messages/send/{receiverId}/{senderId}")
-    public ResponseEntity<PrivateMessage> send(@PathVariable Long receiverId, @PathVariable Long senderId, @RequestBody MessageRequest request) {
-        sendMessageCommand.execute(request.getContent(), receiverId, senderId);
+    @PostMapping("/private-messages/send")
+    public ResponseEntity<Void> send(@RequestBody MessageRequest request) {
+        sendMessageCommand.execute(request);
         return ResponseEntity.ok().build();
     }
 

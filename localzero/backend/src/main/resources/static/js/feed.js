@@ -74,12 +74,13 @@ export function createFeedPostCard(post, containerId) {
             <h3 class="post-timestamp">Tid</h3>
         </div>
         <div class="card-content">
+            <btn id="view-post"></btn>
             <p class="post-description">Text</p>
         </div>
     `
 
     card.querySelector(".poster-name").textContent = `Posted by: ${post.user.username}`;
-    card.querySelector(".post-timestamp").textContent = `Created at: ${post.createdAt}`;
+    card.querySelector(".post-timestamp").textContent = `Created at: ${formatDate(post.createdAt)}`;
     card.querySelector(".post-description").textContent = `${post.description}`;
 
     container.appendChild(card);
@@ -124,4 +125,16 @@ function createFeedInitiativeCard(initiative, containerId) {
 
     container.appendChild(card);
     return card;
+}
+
+function formatDate(isoString) {
+    const date = new Date(isoString);
+
+    return (
+        date.getFullYear() + "-" +
+        String(date.getMonth() + 1).padStart(2, "0") + "-" +
+        String(date.getDate()).padStart(2, "0") + " " +
+        String(date.getHours()).padStart(2, "0") + ":" +
+        String(date.getMinutes()).padStart(2, "0")
+    );
 }

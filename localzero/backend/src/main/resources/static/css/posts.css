@@ -1,0 +1,32 @@
+.post-page-button {
+    width: 120px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #acb4a4;
+    color: #422b23;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: Verdana, serif;
+    transition-duration: 0.4s;
+}
+
+.post-page-button:hover {
+    cursor: pointer;
+    background-color: #7C846A;
+}
+
+#post-description {
+    border-radius: 8px;
+    background-color: #efd8d6;
+    border: none;
+    color: #422B23;
+}
+
+#post-card {
+    border-radius: 8px;
+    background-color: #DEAFAB;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}

@@ -1,8 +1,14 @@
 package feja.localzero.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class MessageRequest {
     private String content;
 
-    public String getContent() { return content; }
-    public void setContent(String content) { this.content = content; }
+    private Long senderId;
+
+    private Long receiverId;
 }

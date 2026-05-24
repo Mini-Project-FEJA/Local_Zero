@@ -87,13 +87,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             requestAnimationFrame(() => {
-                const allMessages = document.getElementById("messages");
-                if (allMessages) {
-                    allMessages.scrollTop = allMessages.scrollHeight;
-                }
+                const el = document.getElementById("messages");
+                if (el) el.scrollTop = el.scrollHeight;
             });
         })
         .catch(err => console.error("Error loading messages:", err));
+
 
     const sendBtn = document.getElementById("save-message");
 
@@ -112,14 +111,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const messageContent = input.value.trim();
-
         if (!messageContent) return;
 
         const payload = {
-            content: messageContent
+            content: messageContent,
+            senderId: currentUserId,
+            receiverId: Number(otherUserId)
         };
 
-        fetch(`http://localhost:8081/private-messages/send/${currentUserId}/${otherUserId}`, {
+        fetch("http://localhost:8081/private-messages/send", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -135,7 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then(() => {
                 input.value = "";
-
                 location.reload();
             })
             .catch(err => {
