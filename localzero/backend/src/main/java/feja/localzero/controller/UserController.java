@@ -48,4 +48,9 @@ public class UserController {
         return service.getUsersByCommunityId(communityId);
     }
 
+    @GetMapping("/users-by-community/{communityId}")
+    public List<User> getUsersByCommunity(@PathVariable Long communityId) {
+        return service.getUsersByCommunityId(communityId);
+    }
+
 }

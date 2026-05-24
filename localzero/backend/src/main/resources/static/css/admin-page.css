@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    color: #422B23;
+}
+
+body {
+    background: #f4f6f9;
+    padding: 40px;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #222;
+}
+
+.community-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.community-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.community-header {
+    margin-bottom: 15px;
+}
+
+.community-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    background: #fff;
+}
+
+.user-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 6px 0;
+}
+
+.username {
+    min-width: 150px;
+    font-weight: bold;
+}
+
+.role-btn {
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    background-color: #f3cece;
+}
+
+.role-btn:hover {
+    background-color: #e0b1b1;
+}
+
+.user-card {
+    padding: 15px;
+    background-color: #acb4a4;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.buttons {
+    position: relative;
+    float: right;
+}

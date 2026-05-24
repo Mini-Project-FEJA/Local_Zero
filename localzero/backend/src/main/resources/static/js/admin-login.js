@@ -1,4 +1,3 @@
-//All JavaScript som rör Login + Register page
 
 const adminBtn = document.getElementById("admin-button");
 if (adminBtn) {
@@ -61,7 +60,7 @@ if (loginBtn) {
                 // spara user (enkelt sätt)
                 localStorage.setItem("user", JSON.stringify(user));
 
-                window.location.href = "frontpage.html";
+                window.location.href = "admin-page.html";
             } else {
                 console.error("Login failed");
             }

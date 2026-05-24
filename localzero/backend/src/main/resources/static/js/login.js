@@ -3,7 +3,7 @@
 const adminBtn = document.getElementById("admin-button");
 if (adminBtn) {
     adminBtn.addEventListener("click", function() {
-        window.location.href = "login.html";
+        window.location.href = "admin-login.html";
     });
 }
 

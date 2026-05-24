@@ -12,7 +12,7 @@ export function navigate(id, url) {
     }
 }
 
-navigate("admin-button", "login.html");
+navigate("admin-button", "admin-login.html");
 navigate("resident-button", "login.html");
 navigate("go-to-register-button", "register.html");
 navigate("login-button", "frontpage.html");
