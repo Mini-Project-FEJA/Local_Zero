@@ -64,9 +64,11 @@ export const InitiativeProxy = {
     async getInitiatives(endpoint,forceRefresh = false) {
         if (this.cache[endpoint] && !forceRefresh) {
             console.log("Hämtar initiatives från cache");
+            return this.cache[endpoint];
         }
 
         const response = await fetch(`http://localhost:8081/initiatives/${endpoint}`);
+        console.log("Hämtar initiatives från servern");
         if (!response.ok) {
             throw new Error("Kunde inte hämta initiative");
         }
@@ -206,13 +208,13 @@ const EnumProxy = {
 
     async getEnums(enumType) {
         if (this.cache[enumType]) {
-            console.log("Hämtar från cache")
+            console.log("Hämtar enums från cache")
             return this.cache[enumType];
         }
         try {
             const enumData = await fetchEnum(enumType);
             this.cache[enumType] = enumData;
-            console.log("Hämtar från server")
+            console.log("Hämtar enums från server")
 
             return enumData;
         } catch (error) {

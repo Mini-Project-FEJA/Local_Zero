@@ -25,6 +25,14 @@ public class InitiativeBuilder {
         return this;
     }
 
+    public InitiativeBuilder withVisibility(InitiativeCategory visibility) {
+        if (visibility != null) {
+            this.specification = this.specification.and(((root, query, criteriaBuilder) ->
+                    criteriaBuilder.equal(root.get("visibility"), visibility)));
+        }
+        return this;
+    }
+
     public Specification<SustainabilityInitiative> build() {
         return this.specification;
     }

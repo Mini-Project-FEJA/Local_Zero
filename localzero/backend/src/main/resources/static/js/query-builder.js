@@ -45,6 +45,7 @@ export class QueryBuilder {
 
         const url = `${BASE_URL}/${this.contentType}/search?${params.toString()}`
 
+
         const response = await fetch(url);
         if (response.ok) {
             return await response.json();
