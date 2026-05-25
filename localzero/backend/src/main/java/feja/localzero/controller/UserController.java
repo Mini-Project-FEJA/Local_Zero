@@ -1,6 +1,7 @@
 package feja.localzero.controller;
 
 import feja.localzero.dto.LoginRequest;
+import feja.localzero.dto.UserDTO;
 import feja.localzero.entity.User;
 import feja.localzero.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable Long id) {
+    public UserDTO getUser(@PathVariable Long id) {
         return service.getById(id);
     }
 

@@ -1,5 +1,6 @@
 package feja.localzero.service;
 
+import feja.localzero.dto.UserDTO;
 import feja.localzero.entity.Community;
 import feja.localzero.entity.User;
 import feja.localzero.repo.CommunityRepository;
@@ -64,9 +65,11 @@ public class UserService {
         return passwordEncoder.matches(password, user.getPasswordHash());
     }
 
-    public User getById(Long id) {
-        return userRepository.findById(id)
+    public UserDTO getById(Long id) {
+        User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return new UserDTO(user);
     }
 
     public User getByUsername(String username) {

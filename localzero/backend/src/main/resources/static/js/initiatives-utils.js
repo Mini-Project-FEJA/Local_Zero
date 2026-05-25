@@ -206,13 +206,13 @@ const EnumProxy = {
 
     async getEnums(enumType) {
         if (this.cache[enumType]) {
-            console.log("Hämtar från cache")
+            console.log("Hämtar enums från cache")
             return this.cache[enumType];
         }
         try {
             const enumData = await fetchEnum(enumType);
             this.cache[enumType] = enumData;
-            console.log("Hämtar från server")
+            console.log("Hämtar enums från server")
 
             return enumData;
         } catch (error) {

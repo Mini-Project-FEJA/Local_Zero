@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("User loaded:", user);
 
     // 2. Hämta communityId säkert
-    const communityId = user?.community?.id;
+    const communityId = user.community?.id;
 
     if (!communityId) {
         console.error("Missing communityId in user object:", user);
