@@ -59,7 +59,8 @@ export async function fetchMyInitiatives() {
 }
 
 export const InitiativeProxy = {
-    cache: {},
+    //Hämtar ifrån sessionstorage om det finns annars gör den en tom cache
+    cache: JSON.parse(sessionStorage.getItem("initiativeCache")) || {},
 
     async getInitiatives(endpoint,forceRefresh = false) {
         if (this.cache[endpoint] && !forceRefresh) {
@@ -74,12 +75,15 @@ export const InitiativeProxy = {
         }
         const data = await response.json();
         this.cache[endpoint] = data;
+        sessionStorage.setItem("initiativeCache", JSON.stringify(this.cache));
+
         return data;
     },
 
     invalidateCache() {
         console.log("Clear cache");
         this.cache = {};
+        sessionStorage.removeItem("initiativeCache");
     }
 }
 
